@@ -33,31 +33,22 @@ final case class BackchannelAuthenticationFailRequest(
 
 object BackchannelAuthenticationFailRequest {
 
-  enum BackchannelAuthenticationFailRequestReason(value: String) derives Schema, Codec.AsObject {
+  enum BackchannelAuthenticationFailRequestReason derives Schema, Codec.AsObject {
 
-    case AccessDenied extends BackchannelAuthenticationFailRequestReason("ACCESS_DENIED")
+    case ACCESS_DENIED
 
-    case ExpiredLoginHintToken
-        extends BackchannelAuthenticationFailRequestReason(
-          "EXPIRED_LOGIN_HINT_TOKEN"
-        )
+    case EXPIRED_LOGIN_HINT_TOKEN
 
-    case InvalidBindingMessage
-        extends BackchannelAuthenticationFailRequestReason(
-          "INVALID_BINDING_MESSAGE"
-        )
+    case INVALID_BINDING_MESSAGE
 
-    case InvalidTarget   extends BackchannelAuthenticationFailRequestReason("INVALID_TARGET")
-    case InvalidUserCode extends BackchannelAuthenticationFailRequestReason("INVALID_USER_CODE")
-    case MissingUserCode extends BackchannelAuthenticationFailRequestReason("MISSING_USER_CODE")
-    case ServerError     extends BackchannelAuthenticationFailRequestReason("SERVER_ERROR")
+    case INVALID_TARGET
+    case INVALID_USER_CODE
+    case MISSING_USER_CODE
+    case SERVER_ERROR
 
-    case UnauthorizedClient
-        extends BackchannelAuthenticationFailRequestReason(
-          "UNAUTHORIZED_CLIENT"
-        )
+    case UNAUTHORIZED_CLIENT
 
-    case UnknownUserId extends BackchannelAuthenticationFailRequestReason("UNKNOWN_USER_ID")
+    case UNKNOWN_USER_ID
 
   }
 

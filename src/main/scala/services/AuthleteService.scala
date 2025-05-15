@@ -17,6 +17,11 @@ abstract class AuthleteService[F[_]] {
   def authorization(body: AuthorizationRequest): F[AuthorizationResponse]
 
   /**
+    * Call {@@@@@@@@@@@code/api/{serviceId} /auth/authorization} API.
+    */
+  def authorization(body: Map[String, String]): F[AuthorizationResponse]
+
+  /**
     * Call {@@@@@@@@@@@code/api/{serviceId} /auth/authorization/fail} API.
     */
   def authorizationFail(

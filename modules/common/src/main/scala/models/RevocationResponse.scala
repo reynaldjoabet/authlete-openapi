@@ -28,27 +28,42 @@ final case class RevocationResponse(
 
 object RevocationResponse {
 
-  enum RevocationResponseAction(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum RevocationResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends RevocationResponseAction("INTERNAL_SERVER_ERROR")
-    case InvalidClient       extends RevocationResponseAction("INVALID_CLIENT")
-    case BadRequest          extends RevocationResponseAction("BAD_REQUEST")
-    case Ok                  extends RevocationResponseAction("OK")
+    /**
+      * Authentication of the client application failed. The service implementation should return
+      * either {@code "400 Bad Request"} or {@code "401 Unauthorized"} to the client application.
+      */
+    case INTERNAL_SERVER_ERROR
+
+    /**
+      * The request from the service was wrong or an error occurred in Authlete. The service
+      * implementation should return {@code "500 Internal Server Error"} to the client application.
+      */
+    case INVALID_CLIENT
+
+    /**
+      * The request from the client was wrong. The service implementation should return
+      * {@code "400 Bad Request"} to the client application.
+      */
+    case BAD_REQUEST
+
+    /**
+      * The request from the client was valid. The service implementation should return
+      * {@code "200 OK"} to the client application.
+      */
+    case OK
 
   }
 
   // implicit val codec: JsonValueCodec[RevocationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum RevocationResponseErrorResponse(value: String) derives Schema, Codec.AsObject {
+  enum RevocationResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case InternalServerError extends RevocationResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case InvalidClient       extends RevocationResponseErrorResponse("INVALID_CLIENT")
-    case BadRequest          extends RevocationResponseErrorResponse("BAD_REQUEST")
-    case Ok                  extends RevocationResponseErrorResponse("OK")
+    case INTERNAL_SERVER_ERROR
+    case INVALID_CLIENT
+    case BAD_REQUEST
 
   }
 

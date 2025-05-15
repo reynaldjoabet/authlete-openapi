@@ -32,7 +32,7 @@ final case class CredentialRequestInfo(
     identifier: String,
     format: String,
     bindingKey: String,
-    bindingKeys: Option[List[String]],
+    bindingKeys: List[String],
     details: String
 ) derives ConfiguredJsonValueCodec,
       Schema,

@@ -116,7 +116,7 @@ final case class CredentialJwtIssuerMetadataResponse(
 
 object CredentialJwtIssuerMetadataResponse {
 
-  enum CredentialJwtIssuerMetadataResponseAction(val value: String)
+  enum CredentialJwtIssuerMetadataResponseAction
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
@@ -126,7 +126,7 @@ object CredentialJwtIssuerMetadataResponse {
       * metadata endpoint should return an HTTP response with the HTTP status code "{@code 200 OK}"
       * and the content type "{@code application/json}".
       */
-    case OK extends CredentialJwtIssuerMetadataResponseAction("OK")
+    case OK
 
     /**
       * The feature of Verifiable Credentials is not enabled. The implementation of the JWT issuer
@@ -134,7 +134,7 @@ object CredentialJwtIssuerMetadataResponse {
       * Found}" and the content type "{@code application/json}" to indicate that the endpoint should
       * not be accessed.
       */
-    case NOT_FOUND extends CredentialJwtIssuerMetadataResponseAction("NOT_FOUND")
+    case NOT_FOUND
 
     /**
       * An unexpected error occurred on Authlete side or the service has not been set up properly
@@ -143,7 +143,6 @@ object CredentialJwtIssuerMetadataResponse {
       * "{@code application/json}".
       */
     case INTERNAL_SERVER_ERROR
-        extends CredentialJwtIssuerMetadataResponseAction("INTERNAL_SERVER_ERROR")
 
   }
 

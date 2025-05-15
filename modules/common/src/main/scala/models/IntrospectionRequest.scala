@@ -38,19 +38,19 @@ import sttp.tapir.Schema
   */
 final case class IntrospectionRequest(
     token: String,
-    scopes: Option[List[String]] = None,
+    scopes: List[String] = List.empty,
     subject: Option[String] = None,
     clientCertificate: Option[String] = None,
     dpop: Option[String] = None,
     htm: Option[String] = None,
     htu: Option[String] = None,
-    resources: Option[List[String]] = None,
-    acrValues: Option[List[String]] = None,
+    resources: List[String] = List.empty,
+    acrValues: List[String] = List.empty,
     maxAge: Option[Int] = None,
-    requiredComponents: Option[List[String]] = None,
+    requiredComponents: List[String] = List.empty,
     uri: Option[String] = None,
     message: Option[String] = None,
-    headers: Option[List[Pair]] = None
+    headers: List[Pair] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

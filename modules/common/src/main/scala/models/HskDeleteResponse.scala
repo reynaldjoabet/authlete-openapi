@@ -30,30 +30,24 @@ final case class HskDeleteResponse(
 
 object HskDeleteResponse {
 
-  enum HskDeleteResponseAction(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum HskDeleteResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Success        extends HskDeleteResponseAction("SUCCESS")
-    case InvalidRequest extends HskDeleteResponseAction("INVALID_REQUEST")
-    case NotFound       extends HskDeleteResponseAction("NOT_FOUND")
-    case ServerError    extends HskDeleteResponseAction("SERVER_ERROR")
+    case SUCCESS
+    case INVALID_REQUEST
+    case NOT_FOUND
+    case SERVER_ERROR
 
   }
 
   // implicit val codec: JsonValueCodec[HskDeleteResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum HskDeleteResponseErrorResponse(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum HskDeleteResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Success        extends HskDeleteResponseErrorResponse("SUCCESS")
-    case InvalidRequest extends HskDeleteResponseErrorResponse("INVALID_REQUEST")
-    case NotFound       extends HskDeleteResponseErrorResponse("NOT_FOUND")
-    case ServerError    extends HskDeleteResponseErrorResponse("SERVER_ERROR")
+    case SUCCESS
+    case INVALID_REQUEST
+    case NOT_FOUND
+    case SERVER_ERROR
 
   }
 

@@ -25,24 +25,34 @@ final case class AuthorizationFailRequest(
 
 object AuthorizationFailRequest {
 
-  enum AuthorizationFailRequestReason(value: String) derives Schema, Codec.AsObject {
+  enum AuthorizationFailRequestReason derives Schema, Codec.AsObject {
 
-    case Unknown            extends AuthorizationFailRequestReason("UNKNOWN")
-    case NotLoggedIn        extends AuthorizationFailRequestReason("NOT_LOGGED_IN")
-    case MaxAgeNotSupported extends AuthorizationFailRequestReason("MAX_AGE_NOT_SUPPORTED")
-    case ExceedsMaxAge      extends AuthorizationFailRequestReason("EXCEEDS_MAX_AGE")
-    case DifferentSubject   extends AuthorizationFailRequestReason("DIFFERENT_SUBJECT")
-    case AcrNotSatisfied    extends AuthorizationFailRequestReason("ACR_NOT_SATISFIED")
-    case Denied             extends AuthorizationFailRequestReason("DENIED")
-    case ServerError        extends AuthorizationFailRequestReason("SERVER_ERROR")
-    case NotAuthenticated   extends AuthorizationFailRequestReason("NOT_AUTHENTICATED")
+    case UNKNOWN
+    case NOT_LOGGED_IN
+    case MAX_AGE_NOT_SUPPORTED
+    case EXCEEDS_MAX_AGE
+    case DIFFERENT_SUBJECT
+    case ACR_NOT_SATISFIED
+    case DENIED
+    case SERVER_ERROR
+    case NOT_AUTHENTICATED
 
-    case AccountSelectionRequired
-        extends AuthorizationFailRequestReason("ACCOUNT_SELECTION_REQUIRED")
+    case ACCOUNT_SELECTION_REQUIRED
 
-    case ConsentRequired     extends AuthorizationFailRequestReason("CONSENT_REQUIRED")
-    case InteractionRequired extends AuthorizationFailRequestReason("INTERACTION_REQUIRED")
-    case InvalidTarget       extends AuthorizationFailRequestReason("INVALID_TARGET")
+    case CONSENT_REQUIRED
+    case INTERACTION_REQUIRED
+    case INVALID_TARGET
+    case LOGIN_REQUIRED
+    case REGISTRATION_REQUIRED
+    case TERMS_OF_SERVICE_REQUIRED
+    case ACCOUNT_LOCKED
+    case ACCOUNT_DISABLED
+    case ACCOUNT_TEMPORARILY_LOCKED
+    case ACCOUNT_PERMANENTLY_LOCKED
+    case ACCOUNT_COMPROMISED
+    case ACCOUNT_NOT_VERIFIED
+    case ACCOUNT_SUSPENDED
+    case ACCOUNT_CLOSED
 
   }
 

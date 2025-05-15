@@ -34,15 +34,15 @@ final case class ClientRegistrationUpdateResponse(
 
 object ClientRegistrationUpdateResponse {
 
-  enum ClientRegistrationUpdateResponseAction(val value: String)
+  enum ClientRegistrationUpdateResponseAction
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError extends ClientRegistrationUpdateResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends ClientRegistrationUpdateResponseAction("BAD_REQUEST")
-    case Updated             extends ClientRegistrationUpdateResponseAction("UPDATED")
-    case Unauthorized        extends ClientRegistrationUpdateResponseAction("UNAUTHORIZED")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UPDATED
+    case UNAUTHORIZED
 
   }
   // implicit val codec: JsonValueCodec[ClientRegistrationUpdateResponse] =

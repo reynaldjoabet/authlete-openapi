@@ -37,30 +37,25 @@ final case class UserInfoIssueResponse(
 
 object UserInfoIssueResponse {
 
-  enum UserInfoIssueResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum UserInfoIssueResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends UserInfoIssueResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends UserInfoIssueResponseAction("BAD_REQUEST")
-    case Unauthorized        extends UserInfoIssueResponseAction("UNAUTHORIZED")
-    case Forbidden           extends UserInfoIssueResponseAction("FORBIDDEN")
-    case Json                extends UserInfoIssueResponseAction("JSON")
-    case Ok                  extends UserInfoIssueResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case JSON
+    case JWT
 
   }
   // implicit val codec: JsonValueCodec[UserInfoIssueResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum UserInfoIssueResponseErrorResponse(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum UserInfoIssueResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends UserInfoIssueResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends UserInfoIssueResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized        extends UserInfoIssueResponseErrorResponse("UNAUTHORIZED")
-    case Forbidden           extends UserInfoIssueResponseErrorResponse("FORBIDDEN")
-    case Json                extends UserInfoIssueResponseErrorResponse("JSON")
-    case Ok                  extends UserInfoIssueResponseErrorResponse("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
 
   }
 

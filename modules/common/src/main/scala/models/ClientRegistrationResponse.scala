@@ -34,26 +34,23 @@ final case class ClientRegistrationResponse(
 
 object ClientRegistrationResponse {
 
-  enum ClientRegistrationResponseAction(val value: String) derives Schema, Codec.AsObject {
+  enum ClientRegistrationResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends ClientRegistrationResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends ClientRegistrationResponseAction("BAD_REQUEST")
-    case Created             extends ClientRegistrationResponseAction("CREATED")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case CREATED
 
   }
   // implicit val codec: JsonValueCodec[ClientRegistrationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum ClientRegistrationResponseErrorResponse(val value: String)
+  enum ClientRegistrationResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError
-        extends ClientRegistrationResponseErrorResponse("INTERNAL_SERVER_ERROR")
-
-    case BadRequest extends ClientRegistrationResponseErrorResponse("BAD_REQUEST")
-    case Created    extends ClientRegistrationResponseErrorResponse("CREATED")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
 
   }
 

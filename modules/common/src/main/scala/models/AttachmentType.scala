@@ -13,10 +13,10 @@ import sttp.tapir.Schema
   *
   * @param value
   */
-enum AttachmentType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum AttachmentType derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Embedded extends AttachmentType("EMBEDDED")
-  case External extends AttachmentType("EXTERNAL")
+  case EMBEDDED
+  case EXTERNAL
 
 }
 

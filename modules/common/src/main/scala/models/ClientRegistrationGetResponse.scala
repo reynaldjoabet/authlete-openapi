@@ -34,31 +34,27 @@ final case class ClientRegistrationGetResponse(
 
 object ClientRegistrationGetResponse {
 
-  enum ClientRegistrationGetResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum ClientRegistrationGetResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends ClientRegistrationGetResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends ClientRegistrationGetResponseAction("BAD_REQUEST")
-    case Ok                  extends ClientRegistrationGetResponseAction("OK")
-    case Unauthorized        extends ClientRegistrationGetResponseAction("UNAUTHORIZED")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case OK
+    case UNAUTHORIZED
 
   }
   // implicit val codec: Codec[ClientRegistrationGetResponse] = deriveCodec
   // implicit val jsoniterCodec: JsonValueCodec[ClientRegistrationGetResponse] =
   //   JsonCodecMaker.make(codecMakerConfig)
 
-  enum ClientRegistrationGetResponseErrorResponse(value: String) derives Schema, Codec.AsObject {
+  enum ClientRegistrationGetResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends ClientRegistrationGetResponseErrorResponse("INTERNAL_SERVER_ERROR")
-
-    case BadRequest   extends ClientRegistrationGetResponseErrorResponse("BAD_REQUEST")
-    case Ok           extends ClientRegistrationGetResponseErrorResponse("OK")
-    case Unauthorized extends ClientRegistrationGetResponseErrorResponse("UNAUTHORIZED")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
 
   }
 
 }
-
 object ClientRegistrationGetResponseAction {
   // implicit val codec: JsonValueCodec[
   //   ClientRegistrationGetResponse.ClientRegistrationGetResponseAction

@@ -30,7 +30,7 @@ object LambdaAuthorizer {
       .bearer("config.apiSecret")
       .contentType(MediaType.ApplicationJson)
       .post(uri)
-      .body(IntrospectionRequest("token", Some(scopes), Some("Subject")).toJson)
+      .body(IntrospectionRequest("token", scopes, Some("Subject")).toJson)
       .response(asJson[IntrospectionResponse])
       .send(backend)
 
@@ -42,14 +42,14 @@ object LambdaAuthorizer {
           case None => IO.unit
           case Some(action) =>
             action match {
-              case IntrospectionResponseAction.InternalServerError => IO.unit
-              case IntrospectionResponseAction.BadRequest =>
+              case IntrospectionResponseAction.INTERNAL_SERVER_ERROR => IO.unit
+              case IntrospectionResponseAction.BAD_REQUEST =>
                 generatePolicy("subject", "Deny", "methodArn")
-              case IntrospectionResponseAction.Unauthorized =>
+              case IntrospectionResponseAction.UNAUTHORIZED =>
                 generatePolicy("ng", "Deny", "methodArn")
-              case IntrospectionResponseAction.Forbidden =>
+              case IntrospectionResponseAction.FORBIDDEN =>
                 generatePolicy("subject", "Deny", "methodArn")
-              case IntrospectionResponseAction.Ok => generatePolicy("subject", "Allow", "methodArn")
+              case IntrospectionResponseAction.OK => generatePolicy("subject", "Allow", "methodArn")
             }
 
         }

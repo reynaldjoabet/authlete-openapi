@@ -6,16 +6,16 @@ import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker
 import io.circe.Codec
 import sttp.tapir.Schema
 
-enum ResponseType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum ResponseType derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case None             extends ResponseType("NONE")
-  case Code             extends ResponseType("CODE")
-  case Token            extends ResponseType("TOKEN")
-  case IdToken          extends ResponseType("ID_TOKEN")
-  case CodeToken        extends ResponseType("CODE_TOKEN")
-  case CodeIdToken      extends ResponseType("CODE_ID_TOKEN")
-  case IdTokenToken     extends ResponseType("ID_TOKEN_TOKEN")
-  case CodeIdTokenToken extends ResponseType("CODE_ID_TOKEN_TOKEN")
+  case NONE
+  case CODE
+  case TOKEN
+  case ID_TOKEN
+  case CODE_TOKEN
+  case CODE_ID_TOKEN
+  case ID_TOKEN_TOKEN
+  case CODE_ID_TOKEN_TOKEN
 
 }
 

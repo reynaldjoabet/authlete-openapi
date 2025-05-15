@@ -33,40 +33,38 @@ final case class AuthorizationTicketInfoResponse(
   */
 object AuthorizationTicketInfoResponse {
 
-  enum AuthorizationTicketInfoResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum AuthorizationTicketInfoResponseAction derives Schema, Codec.AsObject {
 
     /**
       * Information about the ticket has been obtained successfully.
       */
-    case Ok extends AuthorizationTicketInfoResponseAction("OK")
+    case OK
 
     /**
       * The ticket was not found.
       */
-    case NotFound extends AuthorizationTicketInfoResponseAction("NOT_FOUND")
+    case NOT_FOUND
 
     /**
       * The API call was wrong. For example, the {@code ticket} request parameter was missing.
       */
-    case CallerError extends AuthorizationTicketInfoResponseAction("CALLER_ERROR")
+    case CALLER_ERROR
 
     /**
       * An error occurred on Authlete side.
       */
-    case AuthleteError extends AuthorizationTicketInfoResponseAction("AUTHLETE_ERROR")
+    case AUTHLETE_ERROR
 
   }
 
-  enum AuthorizationTicketInfoResponsErrorResponse(value: String)
+  enum AuthorizationTicketInfoResponsErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case NotFound   extends AuthorizationTicketInfoResponsErrorResponse("NOT_FOUND")
-    case BadRequest extends AuthorizationTicketInfoResponsErrorResponse("BAD_REQUEST")
-
-    case InternalServerError
-        extends AuthorizationTicketInfoResponsErrorResponse("INTERNAL_SERVER_ERROR")
+    case NOT_FOUND
+    case BAD_REQUEST
+    case INTERNAL_SERVER_ERROR
 
   }
 

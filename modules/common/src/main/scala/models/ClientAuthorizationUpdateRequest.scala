@@ -18,7 +18,7 @@ import sttp.tapir.Schema
   */
 final case class ClientAuthorizationUpdateRequest(
     subject: String,
-    scopes: Option[List[String]] = None
+    scopes: List[String] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

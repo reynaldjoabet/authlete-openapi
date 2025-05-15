@@ -254,3 +254,153 @@ Both `postRequest(uri: Uri)` and `postRequest[R: JsonValueCodec](uri: Uri)` have
 Scala cannot distinguish them because type parameters do not contribute to method overloading resolution.
 
 having issues with `metals`, you can run `rm -rf ~/.metals` to delete the `.metals` folder
+
+
+`cd ~/Library/Application\ Support/`
+
+Access tokens must always be associated with scopes
+
+[oauth-oidc-mistakes](https://darutk.medium.com/oauth-oidc-mistakes-7f3bb909518b)
+
+If the client omits the scope parameter when requesting authorization, the authorization server MUST either process the request using a pre-defined default value or fail the request indicating an invalid scope.
+
+
+You design access
+tokens in terms of business privileges to APIs. You should customize the access token
+for each client to only give them least-privilege API access. 
+
+
+OAuth 2.0 focuses on API authorization
+
+```A zero-trust approach does not assume any implicit trust, e.g. based on infrastructure
+rules such as internal network addresses. Zero trust means that you should use
+explicit trust and not assume that requests come from a certain client or user. With
+regards to API security, this implies that APIs must always verify the caller.
+```
+
+```
+Access tokens are your API credentials. You design them to enable APIs to enforce
+least privilege access. First, access tokens can be designed to restrict access by busi‐
+ness area. Next, you can include values in the access token that your APIs use for
+authorization. These can be user attributes or runtime values such as the authenti‐
+cation strength. This provides the most powerful ways for your APIs to authorize
+requests. Finally, assign access tokens a short lifetime to limit the impact of any
+potential misuse.
+```
+
+
+When an API validates access tokens, it immediately rejects any requests containing
+altered or expired tokens. Otherwise, the API trusts the identity attributes in the
+access token and uses them for business authorization. When implemented correctly
+this approach provides zero-trust in terms of your business.
+
+APIs do not trust each other. Instead, they only trust the authorization
+server.
+
+OAuth enables clients to send restricted access tokens to APIs, which then authorize requests
+based on the attributes in the access token. You can use OAuth to scale security to
+many APIs
+
+Often, the caller of APIs is a user. Consequently, the user must authenticate before
+calling APIs. Users do not interact directly with APIs and instead use a client appli‐
+cation as their delegate. When possible authenticate both the user and the client
+application before issuing the client an access token
+
+```
+Authlete is a BaaS (Backend as a Service) providing set of APIs to be used for implementing OAuth 2.0 authorization servers and/or OpenID Connect identity providers.
+```
+`first party` integration - the loyalty program and e-commerce site are both run by the same company.
+
+`docker network create --driver bridge authlete-net`
+
+You can check the container logs to verify that the container started correctly 
+`docker logs authlete-ecommerce`
+
+http://localhost:8080/ecommerce/oauth //redirect uri
+
+
+```json
+{
+  "service_name": "Loyalty",
+  "auth_uri": "http://localhost:8081/loyalty/oauth/authorization",
+  "redirect_uri": "http://localhost:8080/ecommerce/oauth",
+  "token_uri": "http://authlete-loyalty:8080/loyalty/oauth/token",
+  "api_endpoint": "http://authlete-loyalty:8080/loyalty/api/currentCustomer",
+  "query_params": {
+    "prompt": "login"
+  },
+}
+```
+
+
+The response’s action property indicates what the servlet should do next, and responseContent holds data that the servlet will relay back to the client.
+
+
+In the OAuth 2.0 context, a server that issues access tokens (and optionally refresh tokens) is called authorization server. On the other hand, in the OpenID Connect context, a server that issues ID tokens is called OpenID Provider (IdP)
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+OAuth endpoints, such as authorization endpoint, will be placed in your environment, not ours. Therefore, you can customize UI and UX with no limit. For example, you can separate the authentiation page from authorization page, or you can allow your end-users to choose scopes to be granted.
+
+![alt text](image-2.png)
+You can integrate Authlete with any IAM solution, authentication solution or API gateway solution of your choice because Authlete focuses on authorization function only. For example, if you have a authentication and IAM systems for your existing service, you can minimize the cost of introducing OAuth and OpenID Connect by integrating Authlete into those systems.
+
+## Single Access Token per Subject
+Authlete revokes issued tokens and issues a new access token every time the same user grants an authorization request from a client.
+
+## Granted Scopes Management
+Authlete enables customers to get a list of (or remove) scopes that are granted end-users.
+
+This function is only available for Enterprise Plan users.
+
+## Caching introspection responses
+In some use cases, caching responses from Authlete’s introspection endpoint improves performance of response at resource server APIs.
+
+- Install a cache server of your choice e.g. Redis at your authorization server or resource server(s).
+- Configure the cache server to store responses from Authlete’s introspection endpoint
+
+
+### API gateway products that have been integrated with Authlete
+
+![alt text](image-3.png)
+
+Deploying API gateways is not necessary for Authlete itself to work. But in some cases integration between API gateways and Authlete would be valuable.
+
+API gateways can leverage Authlete to enhance/replace their OAuth authorization server function
+
+
+![alt text](image-4.png)
+
+You can integrate Authlete with Amazon API Gateway with its Lambda Authorizers so that the gateway can handle access tokens which Authlete has issued.
+
+
+[financial_grade_apigateway](https://www.authlete.com/developers/tutorial/financial_grade_apigateway/)
+
+
+[access-tokens/extra-properties](https://www.authlete.com/kb/oauth-and-openid-connect/access-tokens/extra-properties/)
+
+[custom_authorizer](https://www.authlete.com/developers/custom_authorizer/)
+
+
+```sh
+RUN groupadd --gid 10000 apiuser \
+  && useradd --uid 10001 --gid apiuser --shell /bin/bash --create-home apiuser
+USER 10001
+```
+
+
+Each access token has a scope that limits its purpose, that is which API functionalities
+a client can access
+
+authenticated encryption- both encrypts and authenticates
+
+difference between authorization and access control
+authorization is something people do
+access control is enforced by the system- what you are allowed to do
+
+
+### what is Proof of Posession?
+- what: POP demonstrates possesion of cryptographic aterial when performing an operation
+- How:Typically with a signature in conjunction with a token that contains or references the POP key used to sign
+- Why: Preventing use of a leaked/stolen token

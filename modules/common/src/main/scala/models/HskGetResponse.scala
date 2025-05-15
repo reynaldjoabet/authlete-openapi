@@ -27,36 +27,24 @@ final case class HskGetResponse(
 
 object HskGetResponse {
 
-  enum HskGetResponseAction(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum HskGetResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Success        extends HskGetResponseAction("SUCCESS")
-    case InvalidRequest extends HskGetResponseAction("INVALID_REQUEST")
-    case NotFound       extends HskGetResponseAction("NOT_FOUND")
-    case ServerError    extends HskGetResponseAction("SERVER_ERROR")
+    case SUCCESS
+    case INVALID_REQUEST
+    case NOT_FOUND
+    case SERVER_ERROR
+
+  }
+
+  enum HskGetResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+
+    case SUCCESS
+    case INVALID_REQUEST
+    case NOT_FOUND
+    case SERVER_ERROR
 
   }
 
   // implicit val codec: JsonValueCodec[HskGetResponse] =
-  // JsonCodecMaker.make(codecMakerConfig)
-
-  enum HskGetResponseErrorResponse(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
-
-    case Success        extends HskGetResponseErrorResponse("SUCCESS")
-    case InvalidRequest extends HskGetResponseErrorResponse("INVALID_REQUEST")
-    case NotFound       extends HskGetResponseErrorResponse("NOT_FOUND")
-    case ServerError    extends HskGetResponseErrorResponse("SERVER_ERROR")
-
-  }
-
-}
-
-object HskGetResponseAction {
-  // implicit val codec: JsonValueCodec[HskGetResponse.HskGetResponseAction] =
   // JsonCodecMaker.make(codecMakerConfig)
 }

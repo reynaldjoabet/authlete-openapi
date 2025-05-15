@@ -85,13 +85,13 @@ final case class TokenIssueResponse(
     clientIdAlias: Option[String],
     clientIdAliasUsed: Option[Boolean],
     subject: Option[String],
-    scopes: Option[List[String]],
-    properties: Option[List[Property]],
+    scopes: List[String] = List.empty,
+    properties: List[Property] = List.empty,
     jwtAccessToken: Option[String],
-    accessTokenResources: Option[List[String]],
+    accessTokenResources: List[String] = List.empty,
     authorizationDetails: Option[AuthzDetails],
-    serviceAttributes: Option[List[Pair]],
-    clientAttributes: Option[List[Pair]],
+    serviceAttributes: List[Pair] = List.empty,
+    clientAttributes: List[Pair] = List.empty,
     clientEntityId: Option[String],
     clientEntityIdUsed: Option[Boolean]
 ) derives ConfiguredJsonValueCodec,
@@ -100,23 +100,19 @@ final case class TokenIssueResponse(
 
 object TokenIssueResponse {
 
-  enum TokenIssueResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum TokenIssueResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenIssueResponseAction("INTERNAL_SERVER_ERROR")
-    case Ok                  extends TokenIssueResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+    case OK
 
   }
   // implicit val codec: JsonValueCodec[TokenIssueResponse] =
   // sonCodecMaker.make
 
-  enum TokenIssueResponseErrorResponse(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum TokenIssueResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenIssueResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case Ok                  extends TokenIssueResponseErrorResponse("OK")
-
+    case INTERNAL_SERVER_ERROR
+    // case OK
   }
 
 }

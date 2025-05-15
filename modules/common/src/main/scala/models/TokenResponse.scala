@@ -144,16 +144,16 @@ final case class TokenResponse(
     clientIdAlias: Option[String],
     clientIdAliasUsed: Option[Boolean],
     subject: Option[String],
-    scopes: Option[List[String]],
-    properties: Option[List[Property]],
+    scopes: List[String] = List.empty,
+    properties: List[Property] = List.empty,
     jwtAccessToken: Option[String],
-    resources: Option[List[String]],
-    accessTokenResources: Option[List[String]],
+    resources: List[String] = List.empty,
+    accessTokenResources: List[String] = List.empty,
     authorizationDetails: Option[AuthzDetails],
-    serviceAttributes: Option[List[Pair]],
-    clientAttributes: Option[List[Pair]],
+    serviceAttributes: List[Pair] = List.empty,
+    clientAttributes: List[Pair] = List.empty,
     grantId: Option[String],
-    audiences: Option[List[String]],
+    audiences: List[String] = List.empty,
     requestedTokenType: Option[TokenType],
     subjectToken: Option[String],
     subjectTokenType: Option[TokenType],
@@ -171,31 +171,31 @@ final case class TokenResponse(
 
 object TokenResponse {
 
-  enum TokenResponseAction(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+  enum TokenResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenResponseAction("INTERNAL_SERVER_ERROR")
-    case InvalidClient       extends TokenResponseAction("INVALID_CLIENT")
-    case BadRequest          extends TokenResponseAction("BAD_REQUEST")
-    case Password            extends TokenResponseAction("PASSWORD")
-    case Ok                  extends TokenResponseAction("OK")
-    case TokenExchange       extends TokenResponseAction("TOKEN_EXCHANGE")
-    case JwtBearer           extends TokenResponseAction("JWT_BEARER")
+    case INTERNAL_SERVER_ERROR
+    case INVALID_CLIENT
+    case BAD_REQUEST
+    case PASSWORD
+    case OK
+    case TOKEN_EXCHANGE
+    case JWT_BEARER
+
+  }
+
+  enum TokenResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+
+    case INTERNAL_SERVER_ERROR
+    case INVALID_CLIENT
+    case BAD_REQUEST
+    case PASSWORD
+    case OK
+    case TOKEN_EXCHANGE
+    case JWT_BEARER
 
   }
 
   // implicit val codec: JsonValueCodec[TokenResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
-
-  enum TokenResponseErrorResponse(value: String) derives Schema, Codec.AsObject {
-
-    case InternalServerError extends TokenResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case InvalidClient       extends TokenResponseErrorResponse("INVALID_CLIENT")
-    case BadRequest          extends TokenResponseErrorResponse("BAD_REQUEST")
-    case Password            extends TokenResponseErrorResponse("PASSWORD")
-    case Ok                  extends TokenResponseErrorResponse("OK")
-    case TokenExchange       extends TokenResponseErrorResponse("TOKEN_EXCHANGE")
-    case JwtBearer           extends TokenResponseErrorResponse("JWT_BEARER")
-
-  }
 
 }

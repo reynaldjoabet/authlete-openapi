@@ -29,15 +29,15 @@ import sttp.tapir.Schema
 final case class UserInfoIssueRequest(
     token: String,
     claims: Option[String] = None,
-    sub: Option[String] = None,
+    sub: Option[String] = None, // List[String]=List.empty
     claimsForTx: Option[String] = None,
     requestSignature: Option[String] = None,
-    headers: Option[Array[Pair]] = None
+    headers: List[Pair] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject
 
-object UserInfoIssueRequest {
-  // implicit val codec: JsonValueCodec[UserInfoIssueRequest] =
-  //   JsonCodecMaker.make(codecMakerConfig)
-}
+// object UserInfoIssueRequest {
+//   // implicit val codec: JsonValueCodec[UserInfoIssueRequest] =
+//   //   JsonCodecMaker.make(codecMakerConfig)
+// }

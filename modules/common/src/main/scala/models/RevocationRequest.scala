@@ -33,10 +33,10 @@ import sttp.tapir.Schema
   */
 final case class RevocationRequest(
     parameters: String,
-    clientId: Option[String],
-    clientSecret: Option[String],
-    clientCertificate: Option[String],
-    clientCertificatePath: Option[String]
+    clientId: Option[String] = None,
+    clientSecret: Option[String] = None,
+    clientCertificate: Option[String] = None,
+    clientCertificatePath: Option[String] = None
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

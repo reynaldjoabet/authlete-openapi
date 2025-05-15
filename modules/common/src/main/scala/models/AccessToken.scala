@@ -40,8 +40,8 @@ final case class AccessToken(
     clientId: Option[Long],
     subject: Option[String],
     grantType: Option[GrantType],
-    scopes: Option[List[String]],
-    properties: Option[List[Property]]
+    scopes: List[String],
+    properties: List[Property]
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

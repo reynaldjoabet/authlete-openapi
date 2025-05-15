@@ -51,9 +51,9 @@ final case class TokenCreateResponse(
     expiresAt: Option[Long],
     expiresIn: Option[Long],
     grantType: Option[String],
-    properties: Option[List[Property]],
+    properties: List[Property] = List.empty,
     refreshToken: Option[String],
-    scopes: Option[List[String]],
+    scopes: List[String] = List.empty,
     subject: Option[String],
     tokenType: Option[String],
     jwtAccessToken: Option[String],
@@ -65,27 +65,24 @@ final case class TokenCreateResponse(
 
 object TokenCreateResponse {
 
-  enum TokenCreateResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum TokenCreateResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenCreateResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends TokenCreateResponseAction("BAD_REQUEST")
-    case Forbidden           extends TokenCreateResponseAction("FORBIDDEN")
-    case Ok                  extends TokenCreateResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case FORBIDDEN
+    case OK
 
   }
 
   // implicit val codec: JsonValueCodec[TokenCreateResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum TokenCreateResponseErrorResponse(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum TokenCreateResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenCreateResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends TokenCreateResponseErrorResponse("BAD_REQUEST")
-    case Forbidden           extends TokenCreateResponseErrorResponse("FORBIDDEN")
-    case Ok                  extends TokenCreateResponseErrorResponse("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case FORBIDDEN
+    case OK
 
   }
 

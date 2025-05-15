@@ -25,7 +25,7 @@ final case class ClientGetListResponse(
     start: Option[Long],
     end: Option[Long],
     totalCount: Option[Long],
-    clients: Option[List[Client]]
+    clients: List[Client]
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

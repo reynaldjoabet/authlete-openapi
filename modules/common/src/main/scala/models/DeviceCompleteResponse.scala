@@ -27,35 +27,31 @@ final case class DeviceCompleteResponse(
 
 object DeviceCompleteResponse {
 
-  enum DeviceCompleteResponseAction(val value: String)
+  enum DeviceCompleteResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+
+    case SERVER_ERROR
+    case USER_CODE_NOT_EXIST
+    case USER_CODE_EXPIRED
+    case INVALID_REQUEST
+    case SUCCESS
+
+  }
+
+  enum DeviceCompleteResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case ServerError      extends DeviceCompleteResponseAction("SERVER_ERROR")
-    case UserCodeNotExist extends DeviceCompleteResponseAction("USER_CODE_NOT_EXIST")
-    case UserCodeExpired  extends DeviceCompleteResponseAction("USER_CODE_EXPIRED")
-    case InvalidRequest   extends DeviceCompleteResponseAction("INVALID_REQUEST")
-    case Success          extends DeviceCompleteResponseAction("SUCCESS")
+    case SERVER_ERROR
+    case USER_CODE_NOT_EXIST
+    case USER_CODE_EXPIRED
+    case INVALID_REQUEST
+    case SUCCESS
 
   }
 
   // implicit val codec: JsonValueCodec[DeviceCompleteResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
-
-  enum DeviceCompleteResponseErrorResponse(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
-
-    case ServerError      extends DeviceCompleteResponseErrorResponse("SERVER_ERROR")
-    case UserCodeNotExist extends DeviceCompleteResponseErrorResponse("USER_CODE_NOT_EXIST")
-    case UserCodeExpired  extends DeviceCompleteResponseErrorResponse("USER_CODE_EXPIRED")
-    case InvalidRequest   extends DeviceCompleteResponseErrorResponse("INVALID_REQUEST")
-    case Success          extends DeviceCompleteResponseErrorResponse("SUCCESS")
-
-  }
-
 }
 
 object DeviceCompleteResponseAction {

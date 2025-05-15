@@ -28,21 +28,19 @@ final case class AuthorizationFailResponse(
 
 object AuthorizationFailResponse {
 
-  enum AuthorizationFailResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum AuthorizationFailResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends AuthorizationFailResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends AuthorizationFailResponseAction("BAD_REQUEST")
-    case Location            extends AuthorizationFailResponseAction("LOCATION")
-    case Form                extends AuthorizationFailResponseAction("FORM")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case LOCATION
+    case FORM
 
   }
 
-  enum AuthorizationFailResponseErrorResponse(value: String) derives Schema, Codec.AsObject {
+  enum AuthorizationFailResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case InternalServerError extends AuthorizationFailResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends AuthorizationFailResponseErrorResponse("BAD_REQUEST")
-    case Location            extends AuthorizationFailResponseErrorResponse("LOCATION")
-    case Form                extends AuthorizationFailResponseErrorResponse("FORM")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
 
   }
 

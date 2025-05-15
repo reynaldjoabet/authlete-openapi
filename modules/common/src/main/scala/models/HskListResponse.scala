@@ -27,22 +27,22 @@ final case class HskListResponse(
 
 object HskListResponse {
 
-  enum HskListResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum HskListResponseAction derives Schema, Codec.AsObject {
 
     /**
       * The API call succeeded.
       */
-    case SUCCESS extends HskListResponseAction("SUCCESS")
+    case SUCCESS
 
     /**
       * The API call was wrong.
       */
-    case INVALID_REQUEST extends HskListResponseAction("INVALID_REQUEST")
+    case INVALID_REQUEST
 
     /**
       * An error occurred on Authlete side.
       */
-    case SERVER_ERROR extends HskListResponseAction("SERVER_ERROR")
+    case SERVER_ERROR
 
   }
 

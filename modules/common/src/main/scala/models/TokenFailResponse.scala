@@ -28,23 +28,20 @@ final case class TokenFailResponse(
 
 object TokenFailResponse {
 
-  enum TokenFailResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum TokenFailResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenFailResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends TokenFailResponseAction("BAD_REQUEST")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
 
   }
 
   // implicit val codec: JsonValueCodec[TokenFailResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum TokenFailResponseErrorResponse(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum TokenFailResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends TokenFailResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends TokenFailResponseErrorResponse("BAD_REQUEST")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
 
   }
 

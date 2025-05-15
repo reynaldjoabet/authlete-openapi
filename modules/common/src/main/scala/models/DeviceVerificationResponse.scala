@@ -64,14 +64,14 @@ final case class DeviceVerificationResponse(
     clientIdAlias: Option[String] = None,
     clientIdAliasUsed: Option[Boolean] = None,
     clientName: Option[String] = None,
-    scopes: Option[List[Scope]] = None,
-    claimNames: Option[List[String]] = None,
-    acrs: Option[List[String]] = None,
-    resources: Option[List[String]] = None,
+    scopes: List[Scope] = List.empty,
+    claimNames: List[String] = List.empty,
+    acrs: List[String] = List.empty,
+    resources: List[String] = List.empty,
     authorizationDetails: Option[AuthzDetails] = None,
-    serviceAttributes: Option[List[Pair]] = None,
-    clientAttributes: Option[List[Pair]] = None,
-    dynamicScopes: Option[List[DynamicScope]] = None,
+    serviceAttributes: List[Pair] = List.empty,
+    clientAttributes: List[Pair] = List.empty,
+    dynamicScopes: List[DynamicScope] = List.empty,
     expiresAt: Option[Long] = None,
     gmAction: Option[GrantManagementAction] = None,
     grantId: Option[String] = None,
@@ -85,32 +85,27 @@ final case class DeviceVerificationResponse(
 
 object DeviceVerificationResponse {
 
-  enum DeviceVerificationResponseAction(val value: String)
+  enum DeviceVerificationResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+
+    case INTERNAL_SERVER_ERROR
+    case NOT_EXIST
+    case EXPIRED
+    case VALID
+
+  }
+
+  enum DeviceVerificationResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError extends DeviceVerificationResponseAction("INTERNAL_SERVER_ERROR")
-    case NotExist            extends DeviceVerificationResponseAction("NOT_EXIST")
-    case Expired             extends DeviceVerificationResponseAction("EXPIRED")
-    case Valid               extends DeviceVerificationResponseAction("VALID")
+    case INTERNAL_SERVER_ERROR
+    case NOT_EXIST
+    case EXPIRED
+    case VALID
 
   }
+
   // implicit val codec: JsonValueCodec[DeviceVerificationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
-
-  enum DeviceVerificationResponseErrorResponse(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
-
-    case InternalServerError
-        extends DeviceVerificationResponseErrorResponse("INTERNAL_SERVER_ERROR")
-
-    case NotExist extends DeviceVerificationResponseErrorResponse("NOT_EXIST")
-    case Expired  extends DeviceVerificationResponseErrorResponse("EXPIRED")
-    case Valid    extends DeviceVerificationResponseErrorResponse("VALID")
-
-  }
-
 }

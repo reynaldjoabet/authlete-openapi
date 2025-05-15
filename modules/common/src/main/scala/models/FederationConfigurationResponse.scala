@@ -30,14 +30,14 @@ final case class FederationConfigurationResponse(
 
 object FederationConfigurationResponse {
 
-  enum FederationConfigurationResponseAction(val value: String)
+  enum FederationConfigurationResponseAction
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case Ok                  extends FederationConfigurationResponseAction("OK")
-    case NotFound            extends FederationConfigurationResponseAction("NOT_FOUND")
-    case InternalServerError extends FederationConfigurationResponseAction("INTERNAL_SERVER_ERROR")
+    case OK
+    case NOT_FOUND
+    case INTERNAL_SERVER_ERROR
 
   }
   // implicit val codec: JsonValueCodec[FederationConfigurationResponse] =

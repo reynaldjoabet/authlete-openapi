@@ -25,7 +25,7 @@ ThisBuild / semanticdbEnabled := true
 
 ThisBuild / cancelable := true
 
-ThisBuild / usePipelining := true
+//ThisBuild / usePipelining := true //causes issues with multiple modules
 
 lazy val http4sVersion   = "0.23.28"
 lazy val flywayVersion   = "10.22.0"
@@ -180,7 +180,7 @@ lazy val api = project
       http4sBackend
     )
   )
-  .dependsOn(common)
+  .dependsOn(common % "compile->compile;test->test")
 
 //val scala3Version = "3.3.3"  // Scala 3.3 is an LTS series, so it is recommended to use 3.3 when publishing libraries.
 
@@ -209,9 +209,7 @@ lazy val root = project
       "org.scalameta" %% "munit" % "0.7.29" % Test
     )
   )
-  //.aggregate(common)
-  .dependsOn(common)
-
-
+  // .aggregate(common)
+  .dependsOn(common  % "compile->compile;test->test")
 
 //javacOptions ++= Seq("-source", "17", "-target", "17")

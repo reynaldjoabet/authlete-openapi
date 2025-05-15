@@ -93,10 +93,10 @@ final case class BackchannelAuthenticationResponse(
     refreshTokenDuration: Option[Long],
     idTokenDuration: Option[Long],
     jwtAccessToken: Option[String],
-    resources: Option[List[String]],
+    resources: List[String],
     authorizationDetails: Option[AuthzDetails],
-    serviceAttributes: Option[List[Pair]],
-    clientAttributes: Option[List[Pair]],
+    serviceAttributes: List[Pair],
+    clientAttributes: List[Pair],
     grantId: Option[String],
     clientEntityId: Option[String],
     clientEntityIdUsed: Option[Boolean]
@@ -106,32 +106,28 @@ final case class BackchannelAuthenticationResponse(
 
 object BackchannelAuthenticationResponse {
 
-  enum BackchannelAuthenticationResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum BackchannelAuthenticationResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends BackchannelAuthenticationResponseAction("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
-    case BadRequest         extends BackchannelAuthenticationResponseAction("BAD_REQUEST")
-    case Unauthorized       extends BackchannelAuthenticationResponseAction("UNAUTHORIZED")
-    case UserIdentification extends BackchannelAuthenticationResponseAction("USER_IDENTIFICATION")
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case USER_IDENTIFICATION
 
   }
   // implicit val codec: JsonValueCodec[BackchannelAuthenticationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum BackchannelAuthenticationResponseErrorResponse(value: String)
+  enum BackchannelAuthenticationResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError
-        extends BackchannelAuthenticationResponseErrorResponse("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
-    case BadRequest   extends BackchannelAuthenticationResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized extends BackchannelAuthenticationResponseErrorResponse("UNAUTHORIZED")
-
-    case UserIdentification
-        extends BackchannelAuthenticationResponseErrorResponse("USER_IDENTIFICATION")
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case USER_IDENTIFICATION
 
   }
 

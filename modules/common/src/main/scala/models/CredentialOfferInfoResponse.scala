@@ -34,32 +34,32 @@ final case class CredentialOfferInfoResponse(
 
 object CredentialOfferInfoResponse {
 
-  enum CredentialOfferInfoResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum CredentialOfferInfoResponseAction derives Schema, Codec.AsObject {
 
     /**
       * Information about the credential offer has been obtained successfully.
       */
-    case OK extends CredentialOfferInfoResponseAction("OK")
+    case OK
 
     /**
       * The feature of Verifiable Credentials is not enabled in the service configuration.
       */
-    case FORBIDDEN extends CredentialOfferInfoResponseAction("FORBIDDEN")
+    case FORBIDDEN
 
     /**
       * The credential offer specified by the identifier was not found.
       */
-    case NOT_FOUND extends CredentialOfferInfoResponseAction("NOT_FOUND")
+    case NOT_FOUND
 
     /**
       * The API call was wrong. For example, the {@code identifier} request parameter was missing.
       */
-    case CALLER_ERROR extends CredentialOfferInfoResponseAction("CALLER_ERROR")
+    case CALLER_ERROR
 
     /**
       * An error occurred on Authlete side.
       */
-    case AUTHLETE_ERROR extends CredentialOfferInfoResponseAction("AUTHLETE_ERROR")
+    case AUTHLETE_ERROR
 
   }
 

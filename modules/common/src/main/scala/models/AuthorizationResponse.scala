@@ -210,32 +210,32 @@ final case class AuthorizationResponse(
     display: Option[Display],
     maxAge: Option[Long],
     service: Option[Service],
-    scopes: Option[List[Scope]],
-    uiLocales: Option[List[String]],
-    claimsLocales: Option[List[String]],
-    claims: Option[List[String]],
+    scopes: List[Scope],
+    uiLocales: List[String],
+    claimsLocales: List[String],
+    claims: List[String],
     acrEssential: Option[Boolean],
     clientIdAliasUsed: Option[Boolean],
-    acrs: Option[List[String]],
+    acrs: List[String],
     subject: Option[String],
     loginHint: Option[String],
-    prompts: Option[List[Prompt]],
+    prompts: List[Prompt],
     lowestPrompt: Option[Prompt],
     requestObjectPayload: Option[String],
     idTokenClaims: Option[String],
     userInfoClaims: Option[String],
-    resources: Option[List[String]],
+    resources: List[String],
     authorizationDetails: Option[AuthzDetails],
     purpose: Option[String],
     responseContent: Option[String],
     ticket: Option[String],
-    dynamicScopes: Option[List[DynamicScope]],
+    dynamicScopes: List[DynamicScope],
     gmAction: Option[GrantManagementAction],
     grantId: Option[String],
     grant: Option[Grant],
     grantSubject: Option[String],
-    requestedClaimsForTx: Option[List[String]],
-    requestedVerifiedClaimsForTx: Option[List[List[String]]],
+    requestedClaimsForTx: List[String],
+    requestedVerifiedClaimsForTx: List[List[String]],
     transformedClaims: Option[String],
     clientEntityIdUsed: Option[Boolean]
 ) derives ConfiguredJsonValueCodec,
@@ -244,38 +244,30 @@ final case class AuthorizationResponse(
 
 object AuthorizationResponse {
 
-  enum AuthorizationResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum AuthorizationResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends AuthorizationResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends AuthorizationResponseAction("BAD_REQUEST")
-    case Location            extends AuthorizationResponseAction("LOCATION")
-    case Form                extends AuthorizationResponseAction("FORM")
-    case NoInteraction       extends AuthorizationResponseAction("NO_INTERACTION")
-    case Interaction         extends AuthorizationResponseAction("INTERACTION")
-
-    override def toString(): String = value
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case LOCATION
+    case FORM
+    case NO_INTERACTION
+    case INTERACTION
 
   }
 
-  enum AuthorizationResponseErrorResponse(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum AuthorizationResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends AuthorizationResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends AuthorizationResponseErrorResponse("BAD_REQUEST")
-    case Location            extends AuthorizationResponseErrorResponse("LOCATION")
-    case Form                extends AuthorizationResponseErrorResponse("FORM")
-    case NoInteraction       extends AuthorizationResponseErrorResponse("NO_INTERACTION")
-    case Interaction         extends AuthorizationResponseErrorResponse("INTERACTION")
-
-    override def toString(): String = value
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case LOCATION
+    case FORM
+    case NO_INTERACTION
+    case INTERACTION
 
   }
 
   // implicit val codec: JsonValueCodec[AuthorizationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
-
 }
 
 object AuthorizationResponseAction {
@@ -283,3 +275,41 @@ object AuthorizationResponseAction {
   //     : JsonValueCodec[AuthorizationResponse.AuthorizationResponseAction] =
   //   JsonCodecMaker.make(codecMakerConfig)
 }
+
+/**
+  * Get the value of the {@code "userinfo"} property in the {@code "claims"} request parameter or in
+  * the {@code "claims"} property in a request object.
+  *
+  * <p> A client application may request certain claims be embedded in an ID token or in a response
+  * from the UserInfo endpoint. There are several ways. Including the {@code claims} request
+  * parameter and including the {@code claims} property in a request object are such examples. In
+  * both the cases, the value of the {@code claims} parameter/property is JSON. Its format is
+  * described in <a href= "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+  * >5.5. Requesting Claims using the "claims" Request Parameter</a> of <a
+  * href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core 1.0</a>. </p>
+  *
+  * <p> The following is an excerpt from the specification. You can find {@code "userinfo"} and
+  * {@code "id_token"} are top-level properties. </p>
+  *
+  * <pre> { "userinfo": { "given_name": {"essential": true}, "nickname": null, "email":
+  * {"essential": true}, "email_verified": {"essential": true}, "picture": null,
+  * "http://example.info/claims/groups": null }, "id_token": { "auth_time": {"essential": true},
+  * "acr": {"values": ["urn:mace:incommon:iap:silver"] } } } </pre>
+  *
+  * <p> This method ({@code getUserInfoClaims()}) returns the value of the {@code "userinfo"}
+  * property in JSON format. For example, if the JSON above is included in an authorization request,
+  * this method returns JSON equivalent to the following. </p>
+  *
+  * <pre> { "given_name": {"essential": true}, "nickname": null, "email": {"essential": true},
+  * "email_verified": {"essential": true}, "picture": null, "http://example.info/claims/groups":
+  * null } </pre>
+  *
+  * <p> Note that if a request object is given and it contains the {@code claims} property and if
+  * the {@code claims} request parameter is also given, this method returns the value in the former.
+  * </p>
+  *
+  * @return
+  *   The value of the {@code "userinfo"} property in the {@code "claims"} in JSON format.
+  *
+  * @since 2.25
+  */

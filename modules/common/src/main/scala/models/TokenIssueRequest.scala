@@ -23,7 +23,7 @@ import sttp.tapir.Schema
 final case class TokenIssueRequest(
     ticket: String,
     subject: String,
-    properties: Option[List[Property]],
+    properties: List[Property] = List.empty,
     jwtAtClaims: Option[String],
     accessToken: Option[String]
 ) derives ConfiguredJsonValueCodec,

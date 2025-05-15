@@ -163,14 +163,14 @@ final case class CredentialSingleIssueResponse(
 
 object CredentialSingleIssueResponse {
 
-  enum CredentialSingleIssueResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum CredentialSingleIssueResponseAction derives Schema, Codec.AsObject {
 
     /**
       * A credential was issued successfully. The implementation of the credential endpoint should
       * return a successful response with the HTTP status code "200 OK" and the content type
       * {@code application/json}.
       */
-    case OK extends CredentialSingleIssueResponseAction("OK")
+    case OK
 
     /**
       * A credential was issued successfully and the credential response should be encrypted. The
@@ -179,14 +179,14 @@ object CredentialSingleIssueResponse {
       *
       * @since 3.86
       */
-    case OK_JWT extends CredentialSingleIssueResponseAction("OK_JWT")
+    case OK_JWT
 
     /**
       * A transaction ID was issued successfully. The implementation of the credential endpoint
       * should return a successful response with the HTTP status code "202 Accepted" and the content
       * type {@code application/json}.
       */
-    case ACCEPTED extends CredentialSingleIssueResponseAction("ACCEPTED")
+    case ACCEPTED
 
     /**
       * A transaction ID was issued successfully and the credential response should be encrypted.
@@ -195,7 +195,7 @@ object CredentialSingleIssueResponse {
       *
       * @since 3.86
       */
-    case ACCEPTED_JWT extends CredentialSingleIssueResponseAction("ACCEPTED_JWT")
+    case ACCEPTED_JWT
 
     /**
       * The original credential request is wrong. This can happen, for example, when the process for
@@ -204,27 +204,27 @@ object CredentialSingleIssueResponse {
       *
       * @since 3.86
       */
-    case BAD_REQUEST extends CredentialSingleIssueResponseAction("BAD_REQUEST")
+    case BAD_REQUEST
 
     /**
       * The API call does not contain an access token or the access token is invalid.
       */
-    case UNAUTHORIZED extends CredentialSingleIssueResponseAction("UNAUTHORIZED")
+    case UNAUTHORIZED
 
     /**
       * The feature of Verifiable Credentials is not enabled in the service configuration.
       */
-    case FORBIDDEN extends CredentialSingleIssueResponseAction("FORBIDDEN")
+    case FORBIDDEN
 
     /**
       * An error occurred on Authlete side.
       */
-    case INTERNAL_SERVER_ERROR extends CredentialSingleIssueResponseAction("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
     /**
       * The API call is invalid.
       */
-    case CALLER_ERROR extends CredentialSingleIssueResponseAction("CALLER_ERROR")
+    case CALLER_ERROR
 
   }
 

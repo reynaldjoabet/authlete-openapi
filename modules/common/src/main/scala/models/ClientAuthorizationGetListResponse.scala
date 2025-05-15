@@ -26,7 +26,7 @@ final case class ClientAuthorizationGetListResponse(
     developer: Option[String],
     subject: Option[String],
     totalCount: Option[Long],
-    clients: Option[List[Client]]
+    clients: List[Client]
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

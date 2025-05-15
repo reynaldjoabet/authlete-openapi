@@ -39,13 +39,13 @@ import sttp.tapir.Schema
   */
 final case class GMRequest(
     accessToken: Option[String] = None,
-    scopes: Option[List[String]] = None,
+    scopes: List[String] = List.empty,
     subject: Option[String] = None,
     clientCertificate: Option[String] = None,
     dpop: Option[String] = None,
     htm: Option[String] = None,
     htu: Option[String] = None,
-    resources: Option[List[String]] = None,
+    resources: List[String] = List.empty,
     gmAction: Option[GrantManagementAction] = None,
     grantId: Option[String] = None
 ) derives ConfiguredJsonValueCodec,

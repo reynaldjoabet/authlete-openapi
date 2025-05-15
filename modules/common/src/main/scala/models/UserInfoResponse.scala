@@ -80,21 +80,21 @@ final case class UserInfoResponse(
     resultCode: String,
     resultMessage: String,
     action: Option[UserInfoResponse.UserInfoResponseAction],
-    claims: Option[List[String]],
+    claims: List[String] = List.empty,
     clientId: Option[Long],
     clientIdAlias: Option[String],
     clientIdAliasUsed: Option[Boolean],
     responseContent: Option[String],
-    scopes: Option[List[String]],
+    scopes: List[String] = List.empty,
     subject: Option[String],
     token: Option[String],
-    properties: Option[List[Property]],
+    properties: List[Property] = List.empty,
     userInfoClaims: Option[String],
-    serviceAttributes: Option[List[Pair]],
-    clientAttributes: Option[List[Pair]],
-    consentedClaims: Option[List[String]],
-    requestedClaimsForTx: Option[List[String]],
-    requestedVerifiedClaimsForTx: Option[List[List[String]]],
+    serviceAttributes: List[Pair] = List.empty,
+    clientAttributes: List[Pair] = List.empty,
+    consentedClaims: List[String] = List.empty,
+    requestedClaimsForTx: List[String] = List.empty,
+    requestedVerifiedClaimsForTx: List[List[String]] = List.empty,
     transformedClaims: Option[String],
     clientEntityId: Option[String],
     clientEntityIdUsed: Option[Boolean]
@@ -104,28 +104,25 @@ final case class UserInfoResponse(
 
 object UserInfoResponse {
 
-  enum UserInfoResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum UserInfoResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends UserInfoResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends UserInfoResponseAction("BAD_REQUEST")
-    case Unauthorized        extends UserInfoResponseAction("UNAUTHORIZED")
-    case Forbidden           extends UserInfoResponseAction("FORBIDDEN")
-    case Ok                  extends UserInfoResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case OK
 
   }
 
   implicit val codec2: JsonValueCodec[Option[UserInfoResponse]] =
     JsonCodecMaker.make(codecMakerConfig)
 
-  enum UserInfoResponseErrorResponse(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum UserInfoResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends UserInfoResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends UserInfoResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized        extends UserInfoResponseErrorResponse("UNAUTHORIZED")
-    case Forbidden           extends UserInfoResponseErrorResponse("FORBIDDEN")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
 
   }
 

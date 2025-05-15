@@ -16,7 +16,7 @@ import sttp.tapir.Schema
   */
 final case class GrantScope(
     scope: Option[String] = None,
-    resource: Option[List[String]] = None
+    resource: List[String] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

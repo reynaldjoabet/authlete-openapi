@@ -169,7 +169,7 @@ import sttp.tapir.Schema
   */
 
 final case class ServiceConfigurationRequest(
-    pretty: Boolean,
+    pretty: Option[Boolean],
     patch: Option[String]
 ) derives ConfiguredJsonValueCodec,
       Schema,

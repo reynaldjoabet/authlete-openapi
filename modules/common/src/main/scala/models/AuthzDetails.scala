@@ -14,7 +14,7 @@ import sttp.tapir.Schema
   *   Elements of this authorization details.
   */
 final case class AuthzDetails(
-    elements: Option[List[AuthorizationDetailsElement]] = None
+    elements: List[AuthorizationDetailsElement] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject
