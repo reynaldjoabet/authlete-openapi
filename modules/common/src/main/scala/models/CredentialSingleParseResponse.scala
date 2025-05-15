@@ -113,32 +113,32 @@ final case class CredentialSingleParseResponse(
 
 object CredentialSingleParseResponse {
 
-  enum CredentialSingleParseResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum CredentialSingleParseResponseAction derives Schema, Codec.AsObject {
 
     /**
       * The credential request is valid.
       */
-    case OK extends CredentialSingleParseResponseAction("OK")
+    case OK
 
     /**
       * The credential request is invalid.
       */
-    case BAD_REQUEST extends CredentialSingleParseResponseAction("BAD_REQUEST")
+    case BAD_REQUEST
 
     /**
       * The credential request does not contain the access token or the access token is invalid.
       */
-    case UNAUTHORIZED extends CredentialSingleParseResponseAction("UNAUTHORIZED")
+    case UNAUTHORIZED
 
     /**
       * The feature of Verifiable Credentials is not enabled in the service configuration.
       */
-    case FORBIDDEN extends CredentialSingleParseResponseAction("FORBIDDEN")
+    case FORBIDDEN
 
     /**
       * An error occurred on Authlete side.
       */
-    case INTERNAL_SERVER_ERROR extends CredentialSingleParseResponseAction("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
   }
 

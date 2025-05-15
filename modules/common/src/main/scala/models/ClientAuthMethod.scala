@@ -14,15 +14,15 @@ import sttp.tapir.Schema
   *
   * @param value
   */
-enum ClientAuthMethod(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum ClientAuthMethod derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case None                    extends ClientAuthMethod("NONE")
-  case ClientSecretBasic       extends ClientAuthMethod("CLIENT_SECRET_BASIC")
-  case ClientSecretPost        extends ClientAuthMethod("CLIENT_SECRET_POST")
-  case ClientSecretJwt         extends ClientAuthMethod("CLIENT_SECRET_JWT")
-  case PrivateKeyJwt           extends ClientAuthMethod("PRIVATE_KEY_JWT")
-  case TlsClientAuth           extends ClientAuthMethod("TLS_CLIENT_AUTH")
-  case SelfSignedTlsClientAuth extends ClientAuthMethod("SELF_SIGNED_TLS_CLIENT_AUTH")
+  case NONE
+  case CLIENT_SECRET_BASIC
+  case CLIENT_SECRET_POST
+  case CLIENT_SECRET_JWT
+  case PRIVATE_KEY_JWT
+  case TLS_CLIENT_AUTH
+  case SELF_SIGNED_TLS_CLIENT_AUTH
 
 }
 

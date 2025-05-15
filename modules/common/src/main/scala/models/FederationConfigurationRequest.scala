@@ -46,7 +46,7 @@ import sttp.tapir.Schema
   */
 
 final case class FederationConfigurationRequest(
-    entityTypes: Option[List[EntityType]]
+    entityTypes: List[EntityType] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

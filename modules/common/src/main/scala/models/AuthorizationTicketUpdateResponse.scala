@@ -37,7 +37,7 @@ object AuthorizationTicketUpdateResponse {
   /**
     * The result of the {@code /auth/authorization/ticket/update} API call.
     */
-  enum AuthorizationTicketUpdateResponseAction(val value: String)
+  enum AuthorizationTicketUpdateResponseAction
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
@@ -45,24 +45,24 @@ object AuthorizationTicketUpdateResponse {
     /**
       * Information about the ticket has been updated successfully.
       */
-    case OK extends AuthorizationTicketUpdateResponseAction("OK")
+    case OK
 
     /**
       * The ticket was not found.
       */
-    case NOT_FOUND extends AuthorizationTicketUpdateResponseAction("NOT_FOUND")
+    case NOT_FOUND
 
     /**
       * The API call was wrong. For example, the {@code ticket} request parameter was missing.
       */
 
-    case CALLER_ERROR extends AuthorizationTicketUpdateResponseAction("CALLER_ERROR")
+    case CALLER_ERROR
 
     /**
       * An error occurred on Authlete side.
       */
 
-    case AUTHLETE_ERROR extends AuthorizationTicketUpdateResponseAction("AUTHLETE_ERROR")
+    case AUTHLETE_ERROR
 
   }
 

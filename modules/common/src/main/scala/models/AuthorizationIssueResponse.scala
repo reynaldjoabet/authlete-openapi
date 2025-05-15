@@ -51,29 +51,22 @@ final case class AuthorizationIssueResponse(
 
 object AuthorizationIssueResponse {
 
-  enum AuthorizationIssueResponseAction(value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum AuthorizationIssueResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends AuthorizationIssueResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends AuthorizationIssueResponseAction("BAD_REQUEST")
-    case Location            extends AuthorizationIssueResponseAction("LOCATION")
-    case Form                extends AuthorizationIssueResponseAction("FORM")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case LOCATION
+    case FORM
 
   }
 
-  enum AuthorizationIssueResponseErrorResponse(value: String)
+  enum AuthorizationIssueResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError
-        extends AuthorizationIssueResponseErrorResponse("INTERNAL_SERVER_ERROR")
-
-    case BadRequest extends AuthorizationIssueResponseErrorResponse("BAD_REQUEST")
-    case Location   extends AuthorizationIssueResponseErrorResponse("LOCATION")
-    case Form       extends AuthorizationIssueResponseErrorResponse("FORM")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
 
   }
 

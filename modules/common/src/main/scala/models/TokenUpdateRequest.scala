@@ -62,8 +62,8 @@ import sttp.tapir.Schema
 final case class TokenUpdateRequest(
     accessToken: String,
     accessTokenExpiresAt: Option[Long],
-    scopes: Option[List[String]],
-    properties: Option[List[Property]],
+    scopes: List[String] = List.empty,
+    properties: List[Property] = List.empty,
     accessTokenExpiresAtUpdatedOnScopeUpdate: Option[Boolean],
     accessTokenHash: Option[String],
     accessTokenValueUpdated: Option[Boolean],

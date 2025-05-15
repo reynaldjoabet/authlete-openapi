@@ -12,10 +12,10 @@ import sttp.tapir.Schema
   *
   * @param value
   */
-enum ClientType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum ClientType derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Public       extends ClientType("PUBLIC")
-  case Confidential extends ClientType("CONFIDENTIAL")
+  case PUBLIC
+  case CONFIDENTIAL
 
 }
 

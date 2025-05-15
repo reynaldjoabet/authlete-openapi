@@ -6,11 +6,11 @@ import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker
 import io.circe.Codec
 import sttp.tapir.Schema
 
-enum DeliveryMode(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum DeliveryMode derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Ping extends DeliveryMode("PING")
-  case Poll extends DeliveryMode("POLL")
-  case Push extends DeliveryMode("PUSH")
+  case PING
+  case POLL
+  case PUSH
 
 }
 

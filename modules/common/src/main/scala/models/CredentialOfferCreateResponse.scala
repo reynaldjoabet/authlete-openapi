@@ -34,27 +34,27 @@ final case class CredentialOfferCreateResponse(
 
 object CredentialOfferCreateResponse {
 
-  enum CredentialOfferCreateResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum CredentialOfferCreateResponseAction derives Schema, Codec.AsObject {
 
     /**
       * The {@code /vci/offer/create} API has created a credential offer successfully.
       */
-    case CREATED extends CredentialOfferCreateResponseAction("CREATED")
+    case CREATED
 
     /**
       * The feature of Verifiable Credentials is not enabled in the service configuration.
       */
-    case FORBIDDEN extends CredentialOfferCreateResponseAction("FORBIDDEN")
+    case FORBIDDEN
 
     /**
       * The API call was wrong. For example, the {@code subject} request parameter was missing.
       */
-    case CALLER_ERROR extends CredentialOfferCreateResponseAction("CALLER_ERROR")
+    case CALLER_ERROR
 
     /**
       * An error occurred on Authlete side.
       */
-    case AUTHLETE_ERROR extends CredentialOfferCreateResponseAction("AUTHLETE_ERROR")
+    case AUTHLETE_ERROR
 
   }
 

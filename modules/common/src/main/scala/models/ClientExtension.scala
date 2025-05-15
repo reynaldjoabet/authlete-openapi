@@ -40,7 +40,7 @@ import sttp.tapir.Schema
   *   exchange requests ([RFC 8693][https://www.rfc-editor.org/rfc/rfc8693.html])
   */
 final case class ClientExtension(
-    requestableScopes: Option[List[String]],
+    requestableScopes: List[String],
     requestableScopesEnabled: Option[Boolean],
     accessTokenDuration: Option[Long],
     refreshTokenDuration: Option[Long],
@@ -52,5 +52,5 @@ final case class ClientExtension(
 object ClientExtension {
   // implicit val codec: JsonValueCodec[ClientExtension] =
   // JsonCodecMaker.make(codecMakerConfig)
-  def empty = ClientExtension(None, None, None, None, None)
+  def empty = ClientExtension(List.empty, None, None, None, None)
 }

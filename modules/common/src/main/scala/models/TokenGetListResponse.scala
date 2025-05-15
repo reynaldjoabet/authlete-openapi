@@ -26,7 +26,7 @@ final case class TokenGetListResponse(
     totalCount: Option[Int],
     client: Option[Client],
     subject: Option[String],
-    accessTokens: Option[List[AccessToken]]
+    accessTokens: List[AccessToken] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

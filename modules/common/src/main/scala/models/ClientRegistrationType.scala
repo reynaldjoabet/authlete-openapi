@@ -12,13 +12,10 @@ import sttp.tapir.Schema
   *   `client_registration_types_supported` OP metadata that are defined in [OpenID Connect
   *   Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).
   */
-enum ClientRegistrationType(value: String)
-    derives ConfiguredJsonValueCodec,
-      Schema,
-      Codec.AsObject {
+enum ClientRegistrationType derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Automatic extends ClientRegistrationType("AUTOMATIC")
-  case Explicit  extends ClientRegistrationType("EXPLICIT")
+  case AUTOMATIC
+  case EXPLICIT
 
 }
 

@@ -45,12 +45,12 @@ final case class DeviceCompleteRequest(
     authTime: Option[Long] = None,
     acr: Option[String] = None,
     claims: Option[String] = None,
-    properties: Option[List[Property]] = None,
-    scopes: Option[List[String]] = None,
+    properties: List[String] = List.empty,
+    scopes: List[String] = List.empty,
     errorDescription: Option[String] = None,
     errorUri: Option[String] = None,
     idtHeaderParams: Option[String] = None,
-    consentedClaims: Option[List[String]] = None,
+    consentedClaims: List[String] = List.empty,
     jwtAtClaims: Option[String] = None
 )
 

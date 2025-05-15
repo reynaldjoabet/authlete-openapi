@@ -27,9 +27,9 @@ final case class JoseVerifyResponse(
     resultMessage: String,
     valid: Option[Boolean] = None,
     signatureValid: Option[Boolean] = None,
-    missingClaims: Option[List[String]] = None,
-    invalidClaims: Option[List[String]] = None,
-    errorDescriptions: Option[List[String]] = None
+    missingClaims: List[String] = List.empty,
+    invalidClaims: List[String] = List.empty,
+    errorDescriptions: List[String] = List.empty
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

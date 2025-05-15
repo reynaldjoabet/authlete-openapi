@@ -22,7 +22,7 @@ final case class ServiceGetListResponse(
     start: Option[Int],
     end: Option[Int],
     totalCount: Option[Int],
-    services: Option[List[Service]]
+    services: List[Service]
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

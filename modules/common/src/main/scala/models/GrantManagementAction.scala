@@ -12,16 +12,13 @@ import sttp.tapir.Schema
   * 2.0](https://openid.net/specs/fapi-grant-management.html).
   * @param value
   */
-enum GrantManagementAction(val value: String)
-    derives ConfiguredJsonValueCodec,
-      Schema,
-      Codec.AsObject {
+enum GrantManagementAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Create  extends GrantManagementAction("CREATE")
-  case Query   extends GrantManagementAction("QUERY")
-  case Replace extends GrantManagementAction("REPLACE")
-  case Revoke  extends GrantManagementAction("REVOKE")
-  case Merge   extends GrantManagementAction("MERGE")
+  case CREATE
+  case QUERY
+  case REPLACE
+  case REVOKE
+  case MERGE
 
 }
 

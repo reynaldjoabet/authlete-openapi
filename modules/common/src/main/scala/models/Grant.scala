@@ -13,8 +13,8 @@ import sttp.tapir.Schema
   * @param authorizationDetails
   */
 final case class Grant(
-    scopes: Option[List[GrantScope]] = None,
-    claims: Option[List[String]] = None,
+    scopes: List[GrantScope] = List.empty,
+    claims: List[String] = List.empty,
     authorizationDetails: Option[AuthzDetails] = None
 ) derives ConfiguredJsonValueCodec,
       Schema,

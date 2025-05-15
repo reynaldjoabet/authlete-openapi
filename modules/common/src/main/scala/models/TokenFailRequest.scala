@@ -21,14 +21,13 @@ final case class TokenFailRequest(
 
 object TokenFailRequest {
 
-  enum TokenFailRequestReason(value: String) derives Schema, Codec.AsObject {
+  enum TokenFailRequestReason derives Schema, Codec.AsObject {
 
-    case Unknown extends TokenFailRequestReason("UNKNOWN")
+    case UNKNOWN
 
-    case InvalidResourceOwnerCredentials
-        extends TokenFailRequestReason("INVALID_RESOURCE_OWNER_CREDENTIALS")
+    case INVALID_RESOURCE_OWNER_CREDENTIALS
 
-    case InvalidTarget extends TokenFailRequestReason("INVALID_TARGET")
+    case INVALID_TARGET
 
   }
 

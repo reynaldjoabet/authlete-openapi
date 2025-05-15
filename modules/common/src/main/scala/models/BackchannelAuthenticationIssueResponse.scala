@@ -40,29 +40,21 @@ final case class BackchannelAuthenticationIssueResponse(
 
 object BackchannelAuthenticationIssueResponse {
 
-  enum BackchannelAuthenticationIssueResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum BackchannelAuthenticationIssueResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends BackchannelAuthenticationIssueResponseAction(
-          "INTERNAL_SERVER_ERROR"
-        )
+    case INTERNAL_SERVER_ERROR
 
-    case InvalidTicket extends BackchannelAuthenticationIssueResponseAction("INVALID_TICKET")
-    case Ok            extends BackchannelAuthenticationIssueResponseAction("OK")
+    case INVALID_TICKET
+    case OK
 
   }
 
-  enum BackchannelAuthenticationIssueResponseErrorResponse(value: String)
-      derives Schema,
-        Codec.AsObject {
+  enum BackchannelAuthenticationIssueResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends BackchannelAuthenticationIssueResponseErrorResponse(
-          "INTERNAL_SERVER_ERROR"
-        )
+    case INTERNAL_SERVER_ERROR
 
-    case InvalidTicket extends BackchannelAuthenticationIssueResponseErrorResponse("INVALID_TICKET")
-    case Ok            extends BackchannelAuthenticationIssueResponseErrorResponse("OK")
+    case INVALID_TICKET
+    case OK
 
   }
   // implicit val codec: JsonValueCodec[BackchannelAuthenticationIssueResponse] =

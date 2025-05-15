@@ -15,12 +15,12 @@ import sttp.tapir.Schema
   * `prompt` request parameter.
   * @param value
   */
-enum Prompt(val value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum Prompt derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case None          extends Prompt("NONE")
-  case Login         extends Prompt("LOGIN")
-  case Consent       extends Prompt("CONSENT")
-  case SelectAccount extends Prompt("SELECT_ACCOUNT")
+  case NONE
+  case LOGIN
+  case CONSENT
+  case SELECT_ACCOUNT
 
 }
 

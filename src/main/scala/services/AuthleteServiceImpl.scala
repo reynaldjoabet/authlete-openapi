@@ -18,6 +18,7 @@ import sttp.client4.*
 import sttp.client4.http4s.*
 import sttp.client4.jsoniter.*
 import sttp.model.MediaType
+import sttp.model.StatusCode
 import sttp.model.Uri
 
 final case class AuthleteServiceImpl[F[_]: Async](
@@ -76,6 +77,33 @@ final case class AuthleteServiceImpl[F[_]: Async](
     val uri = baseUri.withPath(List("api", config.apiKey, "auth", "authorization"))
 
     postRequest[AuthorizationRequest, AuthorizationResponse](uri, body)
+      .send(backend)
+      .flatMap {
+        res =>
+          res.code match {
+            case StatusCode.Ok => res.body.fold(???, body => body) // [ResponseException[String, Exception]]
+          }
+        ???
+      }
+      // .map(_.body)
+      .rethrow
+      .flatTap(resp =>
+        logger.info(s"Authorization response  with action ${resp.action} ,result code ${resp
+            .resultCode} and message ${resp.resultMessage}")
+      )
+
+  }
+
+  override def authorization(
+      body: Map[String, String]
+  ): F[AuthorizationResponse] = {
+
+    // s"/api/${config.apiKey}/auth/authorization")
+
+    val uri = baseUri.withPath(List("api", config.apiKey, "auth", "authorization"))
+
+    postRequest[AuthorizationResponse](uri)
+      .body(body)
       .send(backend)
       .map(_.body)
       .rethrow

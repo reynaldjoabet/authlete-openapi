@@ -11,7 +11,7 @@ import sttp.tapir.Schema
   *
   * @param value
   */
-enum TokenType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum TokenType(val value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
   case UrnietfparamsoauthtokenTypejwt extends TokenType("urn:ietf:params:oauth:token-type:jwt")
 
@@ -29,6 +29,8 @@ enum TokenType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.As
   case DeviceCode                       extends TokenType("DEVICE_CODE")
   case TokenExchange                    extends TokenType("TOKEN_EXCHANGE")
   case JwtBearer                        extends TokenType("JWT_BEARER")
+
+  override def toString(): String = value
 
 }
 

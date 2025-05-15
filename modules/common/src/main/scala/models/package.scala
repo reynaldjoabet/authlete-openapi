@@ -1,5 +1,8 @@
 package common
 
+import java.time.LocalDate
+import java.time.LocalDateTime
+
 import scala.util.Try
 
 import cats.effect.kernel.implicits
@@ -9,16 +12,12 @@ import com.github.plokhotnyuk.jsoniter_scala.core.*
 import com.github.plokhotnyuk.jsoniter_scala.macros.CodecMakerConfig
 import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker
 import sttp.model.StatusCode
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 package object models {
 
   implicit val stringCodec: JsonValueCodec[String] = JsonCodecMaker.make(codecMakerConfig)
 
 //implicit def arrayCodec[A: JsonValueCodec]: JsonValueCodec[Array[A]] = JsonCodecMaker.make(codecMakerConfig)
-
-
 
   implicit def listCodec[A: JsonValueCodec]: JsonValueCodec[List[A]] =
     JsonCodecMaker.make(codecMakerConfig)
@@ -27,10 +26,10 @@ package object models {
     JsonCodecMaker.make(codecMakerConfig)
 
   implicit val localDateCodec: JsonValueCodec[LocalDate] =
-       JsonCodecMaker.make(codecMakerConfig)
+    JsonCodecMaker.make(codecMakerConfig)
 
   implicit val localDateTimeCodec: JsonValueCodec[LocalDateTime] =
-       JsonCodecMaker.make(codecMakerConfig)     
+    JsonCodecMaker.make(codecMakerConfig)
 
   val config = CodecMakerConfig
     .withTransientEmpty(false)
@@ -39,25 +38,23 @@ package object models {
     .withDiscriminatorFieldName(None)
 
   // given CodecMakerConfig.PrintCodec with {}
+  // CodecMakerConfig
+  //     .withTransientDefault(false)
+  //     .withTransientEmpty(false)
 
   implicit inline def codecMakerConfig: CodecMakerConfig =
     CodecMakerConfig
       .withAllowRecursiveTypes(true)
-      // .withAlwaysEmitDiscriminator(true)
-      // .withUseScalaEnumValueId(false)
       .withDiscriminatorFieldName(None)
-      // .withMapMaxInsertNumber(65536)
-      // .withSetMaxInsertNumber(65536)
       .withIsStringified(true)
-      // .withDiscriminatorFieldName(Some("$type"))
+      // .withAdtLeafClassNameMapper(
+      //   JsonCodecMaker.simpleClassName.andThen(JsonCodecMaker.enforce_snake_case)
+      // )
       .withAdtLeafClassNameMapper(
-        JsonCodecMaker
-          .enforce_snake_case
-          .andThen(_.toUpperCase())
-          //  JsonCodecMaker.simpleClassName.andThen(name => name.replaceAll("([a-z])([A-Z])", "$1_$2")
-          //                              .toUpperCase())
-
+        JsonCodecMaker.simpleClassName(_) // JsonCodecMaker.enforce_snake_case//.andThen(_.toUpperCase())
       )
+      .withRequireDiscriminatorFirst(false)
+      .withMapAsArray(true)
       .withFieldNameMapper(JsonCodecMaker.enforceCamelCase)
 
   val codecMakerConfig2: CodecMakerConfig =
@@ -92,8 +89,8 @@ package object models {
       /**
         * Deserializes `A` from the provided JSON string.
         */
-      def fromJson[A](json: String)(using JsonValueCodec[A]): Either[ParsingError, A] =
-        Try(readFromString[A](json)).toEither.leftMap(ParsingError.apply)
+      def fromJson[A](using JsonValueCodec[A]): Either[ParsingError, A] =
+        Try(readFromString[A](payload)).toEither.leftMap(ParsingError.apply)
 
     }
 

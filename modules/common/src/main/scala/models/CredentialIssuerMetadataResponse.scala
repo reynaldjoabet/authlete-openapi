@@ -116,24 +116,23 @@ object CredentialIssuerMetadataResponse {
     * The next action that the implementation of the credential issuer metadata endpoint should
     * take.
     */
-  enum CredentialIssuerMetadataResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum CredentialIssuerMetadataResponseAction derives Schema, Codec.AsObject {
 
     /**
       * Credential issuer metadata has been prepared successfully.
       */
-    case OK extends CredentialIssuerMetadataResponseAction("OK")
+    case OK
 
     /**
       * The feature of Verifiable Credentials is not enabled.
       */
-    case NOT_FOUND extends CredentialIssuerMetadataResponseAction("NOT_FOUND")
+    case NOT_FOUND
 
     /**
       * An unexpected error occurred on Authlete side or the service has not been set up properly
       * yet.
       */
     case INTERNAL_SERVER_ERROR
-        extends CredentialIssuerMetadataResponseAction("INTERNAL_SERVER_ERROR")
 
   }
 

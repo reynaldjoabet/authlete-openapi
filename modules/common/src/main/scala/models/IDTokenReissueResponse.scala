@@ -79,22 +79,22 @@ final case class IDTokenReissueResponse(
 
 object IDTokenReissueResponse {
 
-  enum IDTokenReissueResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum IDTokenReissueResponseAction derives Schema, Codec.AsObject {
 
     /**
       * The ID token has been reissued successfully.
       */
-    case OK extends IDTokenReissueResponseAction("OK")
+    case OK
 
     /**
       * An error occurred on Authlete side.
       */
-    case INTERNAL_SERVER_ERROR extends IDTokenReissueResponseAction("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
     /**
       * The API call was wrong. For example, the {@code accessToken} request parameter was missing.
       */
-    case CALLER_ERROR extends IDTokenReissueResponseAction("CALLER_ERROR")
+    case CALLER_ERROR
 
   }
 

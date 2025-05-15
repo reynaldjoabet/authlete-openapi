@@ -31,8 +31,8 @@ final case class ClientAuthorizationDeleteResponse(
     serviceApiKey: Option[Long],
     subject: Option[String],
     modifiedAt: Option[Long],
-    latestGrantedScopes: Option[List[String]],
-    mergedGrantedScopes: Option[List[String]]
+    latestGrantedScopes: List[String],
+    mergedGrantedScopes: List[String]
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject

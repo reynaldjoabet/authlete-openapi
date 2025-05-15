@@ -112,32 +112,26 @@ final case class IntrospectionResponse(
 
 object IntrospectionResponse {
 
-  enum IntrospectionResponseAction(val action: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum IntrospectionResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case InternalServerError extends IntrospectionResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends IntrospectionResponseAction("BAD_REQUEST")
-    case Unauthorized        extends IntrospectionResponseAction("UNAUTHORIZED")
-    case Forbidden           extends IntrospectionResponseAction("FORBIDDEN")
-    case Ok                  extends IntrospectionResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case OK
 
   }
+
+  enum IntrospectionResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case OK
+
+  }
+
   // implicit val codec: JsonValueCodec[IntrospectionResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
-
-  enum IntrospectionResponseErrorResponse(val action: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
-
-    case InternalServerError extends IntrospectionResponseErrorResponse("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends IntrospectionResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized        extends IntrospectionResponseErrorResponse("UNAUTHORIZED")
-    case Forbidden           extends IntrospectionResponseErrorResponse("FORBIDDEN")
-    case Ok                  extends IntrospectionResponseErrorResponse("OK")
-
-  }
-
 }

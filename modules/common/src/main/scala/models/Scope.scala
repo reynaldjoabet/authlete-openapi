@@ -20,16 +20,16 @@ import sttp.tapir.Schema
   *   The attributes of the scope.
   */
 final case class Scope(
-    name: Option[String],
-    defaultEntry: Option[Boolean],
-    description: Option[String],
-    descriptions: Option[Array[TaggedValue]],
-    attributes: Option[Array[Pair]]
+    name: Option[String] = None,
+    defaultEntry: Option[Boolean] = None,
+    description: Option[String] = None,
+    descriptions: Option[Array[TaggedValue]] = None,
+    attributes: Option[Array[Pair]] = None
 ) derives ConfiguredJsonValueCodec,
       Schema,
       Codec.AsObject
 
-object Scope {
-  // implicit val codec: JsonValueCodec[Scope] =
-  // JsonCodecMaker.make(codecMakerConfig)
-}
+// object Scope {
+//   // implicit val codec: JsonValueCodec[Scope] =
+//   // JsonCodecMaker.make(codecMakerConfig)
+// }

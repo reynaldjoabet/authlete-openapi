@@ -1,8 +1,9 @@
 package domain
+
 import com.github.plokhotnyuk.jsoniter_scala.core.JsonValueCodec
 import com.github.plokhotnyuk.jsoniter_scala.macros.ConfiguredJsonValueCodec
 import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker
-import common.models.* 
+import common.models.*
 import io.circe.Codec
 import sttp.tapir.Schema
 
@@ -123,6 +124,6 @@ final case class AuthorizationPage(
       */
     claimsForUserInfo: List[String]
 ) derives ConfiguredJsonValueCodec
-      //Codec.AsObject //,Schema
+//Codec.AsObject //,Schema
 
 import common.models.ClientFlagUpdateRequest

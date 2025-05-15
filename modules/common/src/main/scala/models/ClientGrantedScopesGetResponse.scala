@@ -31,8 +31,8 @@ final case class ClientGrantedScopesGetResponse(
     serviceApiKey: Option[Long],
     clientId: Option[Long],
     subject: Option[String],
-    latestGrantedScopes: Option[List[String]],
-    mergedGrantedScopes: Option[List[String]],
+    latestGrantedScopes: List[String],
+    mergedGrantedScopes: List[String],
     modifiedAt: Option[Long]
 )
 

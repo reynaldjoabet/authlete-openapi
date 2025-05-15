@@ -93,10 +93,10 @@ final case class BackchannelAuthenticationCompleteResponse(
     refreshTokenDuration: Option[Long],
     idTokenDuration: Option[Long],
     jwtAccessToken: Option[String],
-    resources: Option[List[String]],
+    resources: List[String],
     authorizationDetails: Option[AuthzDetails],
-    serviceAttributes: Option[List[Pair]],
-    clientAttributes: Option[List[Pair]],
+    serviceAttributes: List[Pair],
+    clientAttributes: List[Pair],
     grantId: Option[String],
     clientEntityId: Option[String],
     clientEntityIdUsed: Option[Boolean]
@@ -106,23 +106,19 @@ final case class BackchannelAuthenticationCompleteResponse(
 
 object BackchannelAuthenticationCompleteResponse {
 
-  enum BackchannelAuthenticationCompleteResponseAction(value: String)
-      derives Schema,
-        Codec.AsObject {
+  enum BackchannelAuthenticationCompleteResponseAction derives Schema, Codec.AsObject {
 
-    case ServerError  extends BackchannelAuthenticationCompleteResponseAction("SERVER_ERROR")
-    case NoAction     extends BackchannelAuthenticationCompleteResponseAction("NO_ACTION")
-    case Notification extends BackchannelAuthenticationCompleteResponseAction("NOTIFICATION")
+    case SERVER_ERROR
+    case NO_ACTION
+    case NOTIFICATION
 
   }
 
-  enum BackchannelAuthenticationCompleteResponseErrorResponse(value: String)
-      derives Schema,
-        Codec.AsObject {
+  enum BackchannelAuthenticationCompleteResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case ServerError  extends BackchannelAuthenticationCompleteResponseErrorResponse("SERVER_ERROR")
-    case NoAction     extends BackchannelAuthenticationCompleteResponseErrorResponse("NO_ACTION")
-    case Notification extends BackchannelAuthenticationCompleteResponseErrorResponse("NOTIFICATION")
+    case SERVER_ERROR
+    case NO_ACTION
+    case NOTIFICATION
 
   }
   // implicit val codec

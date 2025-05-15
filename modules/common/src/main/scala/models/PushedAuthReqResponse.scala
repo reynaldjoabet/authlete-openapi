@@ -32,34 +32,28 @@ final case class PushedAuthReqResponse(
 
 object PushedAuthReqResponse {
 
-  enum PushedAuthReqResponseAction(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum PushedAuthReqResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Created             extends PushedAuthReqResponseAction("CREATED")
-    case BadRequest          extends PushedAuthReqResponseAction("BAD_REQUEST")
-    case Unauthorized        extends PushedAuthReqResponseAction("UNAUTHORIZED")
-    case Forbidden           extends PushedAuthReqResponseAction("FORBIDDEN")
-    case PayloadTooLarge     extends PushedAuthReqResponseAction("PAYLOAD_TOO_LARGE")
-    case InternalServerError extends PushedAuthReqResponseAction("INTERNAL_SERVER_ERROR")
+    case CREATED
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case PAYLOAD_TOO_LARGE
+    case INTERNAL_SERVER_ERROR
 
   }
+
+  enum PushedAuthReqResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+
+    case CREATED
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case PAYLOAD_TOO_LARGE
+    case INTERNAL_SERVER_ERROR
+
+  }
+
   // implicit val codec: JsonValueCodec[PushedAuthReqResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
-
-  enum PushedAuthReqResponseErrorResponse(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
-
-    case Created             extends PushedAuthReqResponseErrorResponse("CREATED")
-    case BadRequest          extends PushedAuthReqResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized        extends PushedAuthReqResponseErrorResponse("UNAUTHORIZED")
-    case Forbidden           extends PushedAuthReqResponseErrorResponse("FORBIDDEN")
-    case PayloadTooLarge     extends PushedAuthReqResponseErrorResponse("PAYLOAD_TOO_LARGE")
-    case InternalServerError extends PushedAuthReqResponseErrorResponse("INTERNAL_SERVER_ERROR")
-
-  }
-
 }

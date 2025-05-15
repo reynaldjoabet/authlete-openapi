@@ -34,15 +34,15 @@ final case class ClientRegistrationDeleteResponse(
 
 object ClientRegistrationDeleteResponse {
 
-  enum ClientRegistrationDeleteResponseAction(val value: String)
+  enum ClientRegistrationDeleteResponseAction
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError extends ClientRegistrationDeleteResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends ClientRegistrationDeleteResponseAction("BAD_REQUEST")
-    case Deleted             extends ClientRegistrationDeleteResponseAction("DELETED")
-    case Unauthorized        extends ClientRegistrationDeleteResponseAction("UNAUTHORIZED")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case DELETED
+    case UNAUTHORIZED
 
   }
   // implicit val codec: Codec[ClientRegistrationDeleteResponse] = deriveCodec

@@ -13,10 +13,10 @@ import sttp.tapir.Schema
   *
   * @param value
   */
-enum SubjectType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum SubjectType derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Public   extends SubjectType("PUBLIC")
-  case Pairwise extends SubjectType("PAIRWISE")
+  case PUBLIC
+  case PAIRWISE
 
 }
 

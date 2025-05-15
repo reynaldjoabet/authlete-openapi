@@ -28,29 +28,24 @@ final case class HskCreateResponse(
 
 object HskCreateResponse {
 
-  enum HskCreateResponseAction(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum HskCreateResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Success        extends HskCreateResponseAction("SUCCESS")
-    case InvalidRequest extends HskCreateResponseAction("INVALID_REQUEST")
-    case NotFound       extends HskCreateResponseAction("NOT_FOUND")
-    case ServerError    extends HskCreateResponseAction("SERVER_ERROR")
+    case SUCCESS
+    case INVALID_REQUEST
+    case NOT_FOUND
+    case SERVER_ERROR
 
   }
+
   // implicit val codec: JsonValueCodec[HskCreateResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum HskCreateResponseErrorResponse(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum HskCreateResponseErrorResponse derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Success        extends HskCreateResponseErrorResponse("SUCCESS")
-    case InvalidRequest extends HskCreateResponseErrorResponse("INVALID_REQUEST")
-    case NotFound       extends HskCreateResponseErrorResponse("NOT_FOUND")
-    case ServerError    extends HskCreateResponseErrorResponse("SERVER_ERROR")
+    case SUCCESS
+    case INVALID_REQUEST
+    case NOT_FOUND
+    case SERVER_ERROR
 
   }
 

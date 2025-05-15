@@ -34,36 +34,31 @@ final case class PushedAuthorizationResponse(
 
 object PushedAuthorizationResponse {
 
-  enum PushedAuthorizationResponseAction(val value: String)
-      derives ConfiguredJsonValueCodec,
-        Schema,
-        Codec.AsObject {
+  enum PushedAuthorizationResponseAction derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-    case Created             extends PushedAuthorizationResponseAction("CREATED")
-    case BadRequest          extends PushedAuthorizationResponseAction("BAD_REQUEST")
-    case Unauthorized        extends PushedAuthorizationResponseAction("UNAUTHORIZED")
-    case Forbidden           extends PushedAuthorizationResponseAction("FORBIDDEN")
-    case PayloadTooLarge     extends PushedAuthorizationResponseAction("PAYLOAD_TOO_LARGE")
-    case InternalServerError extends PushedAuthorizationResponseAction("INTERNAL_SERVER_ERROR")
+    case CREATED
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case PAYLOAD_TOO_LARGE
+    case INTERNAL_SERVER_ERROR
 
   }
 
   // implicit val codec: JsonValueCodec[PushedAuthorizationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum PushedAuthorizationResponseErrorResponse(val value: String)
+  enum PushedAuthorizationResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case Created         extends PushedAuthorizationResponseErrorResponse("CREATED")
-    case BadRequest      extends PushedAuthorizationResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized    extends PushedAuthorizationResponseErrorResponse("UNAUTHORIZED")
-    case Forbidden       extends PushedAuthorizationResponseErrorResponse("FORBIDDEN")
-    case PayloadTooLarge extends PushedAuthorizationResponseErrorResponse("PAYLOAD_TOO_LARGE")
-
-    case InternalServerError
-        extends PushedAuthorizationResponseErrorResponse("INTERNAL_SERVER_ERROR")
+    case CREATED
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case FORBIDDEN
+    case PAYLOAD_TOO_LARGE
+    case INTERNAL_SERVER_ERROR
 
   }
 

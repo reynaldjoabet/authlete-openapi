@@ -2,6 +2,7 @@ package domain
 
 import java.time.LocalDate
 import java.util.{Date, Locale, TimeZone}
+
 import com.authlete.common.types.StandardClaims
 import com.github.plokhotnyuk.jsoniter_scala.core.JsonValueCodec
 import com.github.plokhotnyuk.jsoniter_scala.macros.ConfiguredJsonValueCodec
@@ -72,11 +73,12 @@ case class User(
     updatedAt: Option[LocalDate] = None,
 
     // Custom claims
-     nationalities: List[String] = List.empty,
+    nationalities: List[String] = List.empty
 
     // // Attributes
     // attributes: Map[String, Any] = Map.empty,
 
     // // Extra claims
     // extraClaims: Map[String, Any] = Map.empty
-) derives Codec.AsObject,Schema
+) derives Codec.AsObject,
+      Schema

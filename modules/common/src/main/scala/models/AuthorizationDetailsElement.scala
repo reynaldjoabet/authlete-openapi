@@ -37,11 +37,11 @@ import sttp.tapir.Schema
   */
 final case class AuthorizationDetailsElement(
     `type`: String,
-    locations: Option[List[String]] = None,
-    actions: Option[List[String]] = None,
-    dataTypes: Option[List[String]] = None,
+    locations: List[String] = List.empty,
+    actions: List[String] = List.empty,
+    dataTypes: List[String] = List.empty,
     identifier: Option[String] = None,
-    privileges: Option[List[String]] = None,
+    privileges: List[String] = List.empty,
     otherFields: Option[String] = None
 ) derives ConfiguredJsonValueCodec,
       Schema,

@@ -16,12 +16,12 @@ import sttp.tapir.Schema
   * Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)".
   * @param value
   */
-enum Display(val value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum Display derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case Page  extends Display("PAGE")
-  case Popup extends Display("POPUP")
-  case Touch extends Display("TOUCH")
-  case Wap   extends Display("WAP")
+  case PAGE
+  case POPUP
+  case TOUCH
+  case WAP
 
 }
 

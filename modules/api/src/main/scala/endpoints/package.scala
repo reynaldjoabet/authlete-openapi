@@ -229,7 +229,7 @@ package object endpoints {
     .body(
       AuthorizationFailRequest(
         "ticket",
-        AuthorizationFailRequest.AuthorizationFailRequestReason.Denied
+        AuthorizationFailRequest.AuthorizationFailRequestReason.DENIED
       ).toJson
     )
 

@@ -28,27 +28,27 @@ final case class HskResponse(
 
 object HskResponse {
 
-  enum HskResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum HskResponseAction derives Schema, Codec.AsObject {
 
     /**
       * The API call succeeded.
       */
-    case SUCCESS extends HskResponseAction("SUCCESS")
+    case SUCCESS
 
     /**
       * The API call was wrong.
       */
-    case INVALID_REQUEST extends HskResponseAction("INVALID_REQUEST")
+    case INVALID_REQUEST
 
     /**
       * There is no record that corresponds to the specified handle.
       */
-    case NOT_FOUND extends HskResponseAction("NOT_FOUND")
+    case NOT_FOUND
 
     /**
       * An error occurred on Authlete side.
       */
-    case SERVER_ERROR extends HskResponseAction("SERVER_ERROR")
+    case SERVER_ERROR
 
   }
 

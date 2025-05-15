@@ -30,24 +30,24 @@ final case class StandardIntrospectionResponse(
 
 object StandardIntrospectionResponse {
 
-  enum StandardIntrospectionResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum StandardIntrospectionResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends StandardIntrospectionResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends StandardIntrospectionResponseAction("BAD_REQUEST")
-    case Ok                  extends StandardIntrospectionResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+
+    case BAD_REQUEST
+    case OK
 
   }
 
-  enum StandardIntrospectionResponseErrorResponse(value: String)
+  enum StandardIntrospectionResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case InternalServerError
-        extends StandardIntrospectionResponseErrorResponse("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
-    case BadRequest extends StandardIntrospectionResponseErrorResponse("BAD_REQUEST")
-    case Ok         extends StandardIntrospectionResponseErrorResponse("OK")
+    case BAD_REQUEST
+    // case OK
 
   }
 

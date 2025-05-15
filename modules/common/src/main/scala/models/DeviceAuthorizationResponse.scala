@@ -85,21 +85,21 @@ final case class DeviceAuthorizationResponse(
     clientIdAliasUsed: Option[Boolean] = None,
     clientName: Option[String] = None,
     clientAuthMethod: Option[String] = None,
-    scopes: Option[List[Scope]] = None,
-    claimNames: Option[List[String]] = None,
-    acrs: Option[List[String]] = None,
+    scopes: List[Scope] = List.empty,
+    claimNames: List[String] = List.empty,
+    acrs: List[String] = List.empty,
     deviceCode: Option[String] = None,
     userCode: Option[String] = None,
     verificationUri: Option[String] = None,
     verificationUriComplete: Option[String] = None,
     expiresIn: Option[Int] = None,
     interval: Option[Int] = None,
-    warnings: Option[List[String]] = None,
-    resources: Option[List[String]] = None,
+    warnings: List[String] = List.empty,
+    resources: List[String] = List.empty,
     authorizationDetails: Option[AuthzDetails] = None,
-    serviceAttributes: Option[List[Pair]] = None,
-    clientAttributes: Option[List[Pair]] = None,
-    dynamicScopes: Option[List[DynamicScope]] = None,
+    serviceAttributes: List[Pair] = List.empty,
+    clientAttributes: List[Pair] = List.empty,
+    dynamicScopes: List[DynamicScope] = List.empty,
     gmAction: Option[GrantManagementAction] = None,
     grantId: Option[String] = None,
     grant: Option[Grant] = None,
@@ -113,25 +113,23 @@ final case class DeviceAuthorizationResponse(
 object DeviceAuthorizationResponse {
   // implicit val codec: Codec[DeviceAuthorizationResponse] = deriveCodec
 
-  enum DeviceAuthorizationResponseAction(val value: String) derives Schema, Codec.AsObject {
+  enum DeviceAuthorizationResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError extends DeviceAuthorizationResponseAction("INTERNAL_SERVER_ERROR")
-    case BadRequest          extends DeviceAuthorizationResponseAction("BAD_REQUEST")
-    case Unauthorized        extends DeviceAuthorizationResponseAction("UNAUTHORIZED")
-    case Ok                  extends DeviceAuthorizationResponseAction("OK")
+    case INTERNAL_SERVER_ERROR
+    case BAD_REQUEST
+    case UNAUTHORIZED
+    case OK
 
   }
   // implicit val jsoniterCodec: JsonValueCodec[DeviceAuthorizationResponse] =
   //   JsonCodecMaker.make(codecMakerConfig)
 
-  enum DeviceAuthorizationResponseErrorResponse(val value: String) derives Schema, Codec.AsObject {
+  enum DeviceAuthorizationResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends DeviceAuthorizationResponseErrorResponse("INTERNAL_SERVER_ERROR")
+    case INTERNAL_SERVER_ERROR
 
-    case BadRequest   extends DeviceAuthorizationResponseErrorResponse("BAD_REQUEST")
-    case Unauthorized extends DeviceAuthorizationResponseErrorResponse("UNAUTHORIZED")
-    case Ok           extends DeviceAuthorizationResponseErrorResponse("OK")
+    case BAD_REQUEST
+    case UNAUTHORIZED
 
   }
 

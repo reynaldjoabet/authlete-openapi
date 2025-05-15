@@ -1,8 +1,13 @@
 import com.github.plokhotnyuk.jsoniter_scala.core._
 import com.github.plokhotnyuk.jsoniter_scala.macros._
-import common.models.*
+import com.github.plokhotnyuk.jsoniter_scala.macros.CodecMakerConfig
+import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker
+import common.models._
 import common.models.HskGetListResponse.HskGetListResponseAction
-import common.models.JsoniterSyntaticSugar.*
+import common.models.JsoniterSyntaticSugar._
+
+implicit val serviceCodec: JsonValueCodec[Service] = JsonCodecMaker.make[Service](CodecMakerConfig)
+import io.circe.Codec
 import sttp.tapir.Schema
 
 val service = """{
@@ -76,9 +81,8 @@ val service = """{
   "serviceName": "My service",
   "serviceOwnerNumber": 2,
   "singleAccessTokenPerSubject": false,
-  "supportedClaimTypes": [
-    "NORMAL"
-  ],
+  "supportedClaimTypes":[
+    "NORMAL"],
   "supportedDisplays": [
     "PAGE"
   ],
@@ -108,7 +112,9 @@ val service = """{
     }
   ],
   "supportedTokenAuthMethods": [
-    "CLIENT_SECRET_BASIC"
+    "CLIENT_SECRET_BASIC",
+    "CLIENT_SECRET_POST",
+    "NONE"
   ],
   "tlsClientCertificateBoundAccessTokens": false,
   "tokenEndpoint": "https://my-service.example.com/token",
@@ -121,6 +127,24 @@ val service = """{
 val ser = readFromString[Service](service)
 
 ser.supportedGrantTypes
+
+ser.supportedScopes
+
+ser.supportedClaimTypes
+
+ser.supportedDisplays
+
+ser.supportedGrantTypes
+
+ser.supportedIntrospectionAuthMethods
+
+ser.supportedResponseTypes
+
+ser.supportedRevocationAuthMethods
+
+ser.supportedScopes
+
+ser.supportedTokenAuthMethods
 
 val authAuthorizationRequest = """{
   "parameters": "response_type=code&client_id=26478243745571&redirect_uri=https%3A%2F%2Fmy-client.example.com%2Fcb1&scope=timeline.read+history.read&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256"
@@ -194,37 +218,37 @@ Long.MaxValue - 26478243745571L
 val auth = AuthorizationResponse(
   "A004001",
   "[A004001] Authlete has successfully issued a ticket to the service (API Key = 21653835348762) for the authorization request from the client (ID = 26478243745571). [response_type=code, openid=false]",
-  Some(AuthorizationResponse.AuthorizationResponseAction.Interaction),
+  Some(AuthorizationResponse.AuthorizationResponseAction.INTERACTION),
   None,
   None,
   None,
   None,
+  List.empty,
+  List.empty,
+  List.empty,
+  List.empty,
+  None,
+  None,
+  List.empty,
+  None,
+  None,
+  List.empty,
   None,
   None,
   None,
   None,
+  List.empty,
   None,
   None,
   None,
   None,
+  List.empty,
   None,
   None,
   None,
   None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
-  None,
+  List.empty,
+  List.empty,
   None,
   None
 )
@@ -407,9 +431,9 @@ val hsks = """{
 }""".stripMargin
 
 readFromString[HskGetListResponse](hsks).action.get match {
-  case HskGetListResponseAction.Success        => 2
-  case HskGetListResponseAction.InvalidRequest => 3
-  case HskGetListResponseAction.ServerError    => 4
+  case HskGetListResponseAction.SUCCESS         => 2
+  case HskGetListResponseAction.INVALID_REQUEST => 3
+  case HskGetListResponseAction.SERVER_ERROR    => 4
 }
 
 val backchannelAuthenticationResponse = """{
@@ -452,3 +476,26 @@ import sttp.model.Uri
 private val baseUri = Uri("https", "config.host", 8090)
 
 "[A001201] /auth/authorization, TLS must be used.".split(",")(1)
+
+import sttp.client4.UriContext
+
+def getUri(limit: Option[Int]): Uri =
+  uri"https://example.com/all?limit=$limit"
+
+  // A query parameter might be optional. The uri interpolator can interpolate Options:
+getUri(Some(10))
+// prints: https://example.com/all?limit=100
+
+getUri(None)
+// prints: https://example.com/all
+
+val queryParams = Map(
+  "q"     -> "scala",
+  "limit" -> "10",
+  "page"  -> "1"
+)
+val uriWithQueryParams = uri"https://example.com/search?$queryParams"
+
+// prints: https://example.com/search?q=scala&limit=10&page=1
+
+queryParams.map { case (k, v) => s"$k=$v" }.mkString("&")

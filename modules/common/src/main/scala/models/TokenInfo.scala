@@ -36,10 +36,10 @@ final case class TokenInfo(
     clientIdAlias: Option[String],
     clientIdAliasUsed: Option[Boolean],
     subject: Option[String],
-    scopes: Option[List[String]],
+    scopes: List[String] = List.empty,
     expiresAt: Option[Long],
-    properties: Option[List[Property]],
-    resources: Option[List[String]],
+    properties: List[Property] = List.empty,
+    resources: List[String] = List.empty,
     authorizationDetails: Option[AuthzDetails],
     clientEntityId: Option[String],
     clientEntityIdUsed: Option[Boolean]

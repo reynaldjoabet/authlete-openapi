@@ -11,17 +11,17 @@ import sttp.tapir.Schema
   * @param value
   */
 
-enum GrantType(value: String) derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
+enum GrantType derives ConfiguredJsonValueCodec, Schema, Codec.AsObject {
 
-  case AuthorizationCode extends GrantType("AUTHORIZATION_CODE")
-  case Implicit          extends GrantType("IMPLICIT")
-  case Password          extends GrantType("PASSWORD")
-  case ClientCredentials extends GrantType("CLIENT_CREDENTIALS")
-  case RefreshToken      extends GrantType("REFRESH_TOKEN")
-  case Ciba              extends GrantType("CIBA")
-  case DeviceCode        extends GrantType("DEVICE_CODE")
-  case TokenExchange     extends GrantType("TOKEN_EXCHANGE")
-  case JwtBearer         extends GrantType("JWT_BEARER")
+  case AUTHORIZATION_CODE
+  case IMPLICIT
+  case PASSWORD
+  case CLIENT_CREDENTIALS
+  case REFRESH_TOKEN
+  case CIBA
+  case DEVICE_CODE
+  case TOKEN_EXCHANGE
+  case JWT_BEARER
 
 }
 

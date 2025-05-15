@@ -35,31 +35,28 @@ final case class FederationRegistrationResponse(
 
 object FederationRegistrationResponse {
 
-  enum FederationRegistrationResponseAction(val value: String)
+  enum FederationRegistrationResponseAction
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case Ok                  extends FederationRegistrationResponseAction("OK")
-    case BadRequest          extends FederationRegistrationResponseAction("BAD_REQUEST")
-    case NotFound            extends FederationRegistrationResponseAction("NOT_FOUND")
-    case InternalServerError extends FederationRegistrationResponseAction("INTERNAL_SERVER_ERROR")
+    case OK
+    case BAD_REQUEST
+    case NOT_FOUND
+    case INTERNAL_SERVER_ERROR
 
   }
   // implicit val codec: JsonValueCodec[FederationRegistrationResponse] =
   // JsonCodecMaker.make(codecMakerConfig)
 
-  enum FederationRegistrationResponseErrorResponse(val value: String)
+  enum FederationRegistrationResponseErrorResponse
       derives ConfiguredJsonValueCodec,
         Schema,
         Codec.AsObject {
 
-    case Ok         extends FederationRegistrationResponseErrorResponse("OK")
-    case BadRequest extends FederationRegistrationResponseErrorResponse("BAD_REQUEST")
-    case NotFound   extends FederationRegistrationResponseErrorResponse("NOT_FOUND")
-
-    case InternalServerError
-        extends FederationRegistrationResponseErrorResponse("INTERNAL_SERVER_ERROR")
+    case BAD_REQUEST
+    case NOT_FOUND
+    case INTERNAL_SERVER_ERROR
 
   }
 

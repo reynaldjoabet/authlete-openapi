@@ -30,29 +30,21 @@ final case class BackchannelAuthenticationFailResponse(
 
 object BackchannelAuthenticationFailResponse {
 
-  enum BackchannelAuthenticationFailResponseAction(value: String) derives Schema, Codec.AsObject {
+  enum BackchannelAuthenticationFailResponseAction derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends BackchannelAuthenticationFailResponseAction(
-          "INTERNAL_SERVER_ERROR"
-        )
+    case INTERNAL_SERVER_ERROR
 
-    case BadRequest extends BackchannelAuthenticationFailResponseAction("BAD_REQUEST")
-    case Forbidden  extends BackchannelAuthenticationFailResponseAction("FORBIDDEN")
+    case BAD_REQUEST
+    case FORBIDDEN
 
   }
 
-  enum BackchannelAuthenticationFailResponseErrorResponse(value: String)
-      derives Schema,
-        Codec.AsObject {
+  enum BackchannelAuthenticationFailResponseErrorResponse derives Schema, Codec.AsObject {
 
-    case InternalServerError
-        extends BackchannelAuthenticationFailResponseErrorResponse(
-          "INTERNAL_SERVER_ERROR"
-        )
+    case INTERNAL_SERVER_ERROR
 
-    case BadRequest extends BackchannelAuthenticationFailResponseErrorResponse("BAD_REQUEST")
-    case Forbidden  extends BackchannelAuthenticationFailResponseErrorResponse("FORBIDDEN")
+    case BAD_REQUEST
+    case FORBIDDEN
 
   }
 
